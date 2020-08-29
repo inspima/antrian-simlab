@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
         <title>{{ config('app.name', 'Laravel') }}</title>
-        <meta content="Attendance System" name="description" />
+        <meta content="ITD Unair" name="description" />
         <meta content="Nambi Sembilu" name="author" />
         @include('layouts.head')
     </head>
