@@ -53,11 +53,11 @@
                             </div>
 
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                            {{-- <a href="javascript:void(0);" class="dropdown-item notify-item active">
                                 <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
                                 <p class="notify-details"><b>Your order is placed</b><small class="text-muted">Dummy
                                         text of the printing and typesetting industry.</small></p>
-                            </a>
+                            </a> --}}
 
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
@@ -67,11 +67,11 @@
                             </a>
 
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            {{-- <a href="javascript:void(0);" class="dropdown-item notify-item">
                                 <div class="notify-icon bg-info"><i class="mdi mdi-martini"></i></div>
                                 <p class="notify-details"><b>Your item is shipped</b><small class="text-muted">It is a
                                         long established fact that a reader will</small></p>
-                            </a>
+                            </a> --}}
 
                             <!-- All-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
