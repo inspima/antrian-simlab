@@ -413,7 +413,7 @@ body {
 }
 
 #topnav .topbar-main {
-  background-color: #c3c3c3;
+  background-color: #05305d;
 }
 
 #topnav .topbar-main .logo {
@@ -470,7 +470,7 @@ body {
 }
 
 #topnav .navbar-custom {
-  background-color: #1520a0;
+  background-color: #0572b5;
   padding-left: 0;
 }
 
@@ -4644,7 +4644,6 @@ Invoice
   }
   .account-page-full.wrapper-page {
     width: 100%;
-    position: relative;
   }
   .navbar-nav .open .dropdown-menu {
     background-color: #ffffff;

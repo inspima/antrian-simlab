@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Models\Account;
+namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Wildside\Userstamps\Userstamps;
 
-class Personal extends Model
+class LogActivity extends Model
 {
     use SoftDeletes, Userstamps;
 
-    protected $table = 'personals';
+    protected $table = 'log_activities';
 
     public $dates = ['created_at', 'updated_at', 'deleted_at'];
 }

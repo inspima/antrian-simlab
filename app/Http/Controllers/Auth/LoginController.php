@@ -46,19 +46,8 @@ class LoginController extends Controller
 
     public function authenticated(Request $request, $user)
     {
-        $setting = Setting::where("code", "work_group_allow")->first();
-        $allowWorkGroupIDs= [];
-        if($setting) {
-            $allowWorkGroupIDs = \GuzzleHttp\json_decode($setting->value);
-        }
-        if(Auth::check()){
-            if($user->personal){
-                if(!in_array($user->personal->work_group_id, $allowWorkGroupIDs)){
-                    Auth::logout();
-                    return redirect('/login')
-                        ->withErrors( 'You dont have permission account');
-                }
-            }else{
+        if (Auth::check()) {
+            if (empty($user->personal)) {
                 Auth::logout();
             }
         }

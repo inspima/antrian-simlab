@@ -6,7 +6,7 @@
             <!-- Logo container-->
             <div class="logo">
                 <a href="{{url('/')}}" class="logo">
-                    <img src="{{ URL::asset('assets/images/logo-asaba.png') }}" alt="" height="40">
+                    <img src="{{ URL::asset('assets/images/logo-web-itd.png') }}" alt="" height="40">
                 </a>
 
             </div>
@@ -127,42 +127,28 @@
             <div id="navigation">
                 <!-- Navigation Menu-->
                 <ul class="navigation-menu">
-
                     <li>
                         <a class="pl-0" href="{{url('/')}}"><i class="mdi mdi-view-dashboard"></i>Dashboard</a>
+                    </li>                    
+                    <li>
+                        <a href="#"><i class="dripicons-document-edit"></i>Registrasi</a>
                     </li>
-
+                    <li class="has-submenu">
+                        <a href="#"><i class=" ti-pie-chart"></i>Laporan</a>
+                        <ul class="submenu">
+                            <li><a href="#">Kuota Harian</a></li>
+                        </ul>
+                    </li>
                     <li class="has-submenu">
                         <a href="#"><i class="mdi mdi-format-list-bulleted-type"></i>Master</a>
                         <ul class="submenu">
-                            <li><a href="{{route('master.company.index')}}">Company</a></li>
-                            <li><a href="{{route('master.work-group.index')}}">Work Group</a></li>
-                            <li><a href="{{route('master.work-place.index')}}">Work Place</a></li>
-                            <li><a href="{{route('master.shift.index')}}">Shift</a></li>
-                            <li><a href="{{route('master.staff.index')}}">Staff</a></li>
-                            <li><a href="{{route('master.guest.index')}}">Guest</a></li>
-                            <li><a href="{{route('master.device.index')}}">User Device</a></li>
+                            <li><a href="#">Organisasi</a></li>
                         </ul>
                     </li>
                     <li class="has-submenu">
-                        <a href="#"><i class="mdi mdi-wrench"></i>Setting</a>
+                        <a href="#"><i class="mdi mdi-wrench"></i>Konfigurasi</a>
                         <ul class="submenu">
-                            <li><a href="{{route('setting.general.index')}}">General</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="{{route('attendance.index')}}" target="_blank"><i class="mdi mdi-fingerprint"></i>Attendance</a>
-                    </li>
-                    {{--                    <li>--}}
-                    {{--                        <a href="{{route('register')}}" target="_blank"><i class="mdi mdi-account-multiple-plus"></i>Guest--}}
-                    {{--                            Register</a>--}}
-                    {{--                    </li>--}}
-                    <li class="has-submenu">
-                        <a href="#"><i class="mdi mdi-format-list-bulleted-type"></i>Report</a>
-                        <ul class="submenu">
-                            <li><a href="{{route('report.date-range.index')}}">Daterange Report</a></li>
-                            <li><a href="{{route('report.daily.index')}}">Daily Report</a></li>
-                            <li><a href="{{route('report.yearly.index')}}">Yearly Report</a></li>
+                            <li><a href="#">Quota</a></li>
                         </ul>
                     </li>
                 </ul>
