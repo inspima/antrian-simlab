@@ -85,7 +85,7 @@
                         <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown"
                            href="#" role="button"
                            aria-haspopup="false" aria-expanded="false">
-                            <img src="{{ URL::asset('assets/images/users/avatar-1.jpg') }}" alt="user"
+                            <img src="{{ URL::asset('assets/images/users/avatar.png') }}" alt="user"
                                  class="rounded-circle">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
