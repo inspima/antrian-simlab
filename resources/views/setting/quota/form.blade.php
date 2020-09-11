@@ -61,11 +61,13 @@
                             <input type="hidden" name="quota_type" value="organization">
                             <div class="form-group ">
                                 <label for="quota" >Organisasi</label>
-                                <select id="organization_id" name="organization_id" class="form-control col-sm-4" data-placeholder="Cari Oganisasi" required>                            
-                                    @if($data->organization)
-                                        <option value="{{$data->organization->id}}">{{$data->organization->name}}</option>
-                                    @endif                        
-                                </select>
+                                <div class="col-sm-6 px-0">
+                                    <select id="organization_id" name="organization_id" class="select2 form-control" data-placeholder="Cari Oganisasi" required>                            
+                                        @if($data->organization)
+                                            <option value="{{$data->organization->id}}">{{$data->organization->name}}</option>
+                                        @endif                        
+                                    </select>
+                                </div>
                             </div>
                                         
                             <div class="form-group ">
