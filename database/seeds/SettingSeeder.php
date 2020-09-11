@@ -26,12 +26,12 @@ class SettingSeeder extends Seeder
         ]);
 
         QuotaOrganization::create([
-            'organization_id' => 1,
+            'organization_id' => 2,
             'quota' => '20',
         ]);
 
         QuotaOrganization::create([
-            'organization_id' => 2,
+            'organization_id' => 3,
             'quota' => '30',
         ]);
 
