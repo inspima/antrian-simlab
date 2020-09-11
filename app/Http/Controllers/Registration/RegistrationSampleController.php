@@ -97,10 +97,10 @@ class RegistrationSampleController extends Controller
             "route" => $this->route
         ];
         PDF::setOptions(['defaultFont' => 'Trebuchet MS']);
-        $pdf=PDF::loadView($this->route . 'print', $params);
+        $pdf = PDF::loadView($this->route . 'print', $params);
         $pdf->setPaper('a4', 'portrait');
         $pdf->save(storage_path() . '_filename.pdf');
-        return $pdf->stream('BUKTI-ANTRIAN' . '.pdf', array("Attachment" => false));
+        return $pdf->stream('BUKTI-ANTRIAN-' . $data->code . '.pdf', array("Attachment" => false));
         // return view($this->route . 'print', $params);
     }
 

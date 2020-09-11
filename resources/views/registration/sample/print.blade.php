@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bukti Antrian </title>
+        <title>Bukti Antrian {{$data->code}}</title>
         <style type="text/css">
             @page {
                 margin: 20px;
