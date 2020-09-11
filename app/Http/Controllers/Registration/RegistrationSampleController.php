@@ -11,8 +11,8 @@ use App\Models\Process\QuotaQueue;
 use App\Models\Process\Registration;
 use App\Models\Process\RegistrationPatient;
 use App\Models\Process\RegistrationQueue;
+use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
-use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -96,9 +96,8 @@ class RegistrationSampleController extends Controller
             "quota" => $quota_organisation->quota,
             "route" => $this->route
         ];
-        
         PDF::setOptions(['defaultFont' => 'Trebuchet MS']);
-        $pdf = PDF::loadView($this->route . 'print', $params);
+        $pdf=PDF::loadView($this->route . 'print', $params);
         $pdf->setPaper('a4', 'portrait');
         $pdf->save(storage_path() . '_filename.pdf');
         return $pdf->stream('BUKTI-ANTRIAN' . '.pdf', array("Attachment" => false));
