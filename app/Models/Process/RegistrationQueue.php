@@ -13,4 +13,9 @@ class RegistrationQueue extends Model
     protected $table = 'registration_queues';
 
     public $dates = ['created_at', 'updated_at', 'deleted_at'];
+
+    public function registration()
+    {
+        return $this->hasMany(Registration::class, 'queue_code', 'code');
+    }
 }

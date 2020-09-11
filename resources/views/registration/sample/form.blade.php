@@ -160,7 +160,7 @@
                         <hr>
                         <div class="row form-group">
                             <input type="hidden" id="max_data" name="max_data" value="{{$quota}}">
-                            <input type="hidden" id="jumlah_data" name="jumlah_data" value="1">
+                            <input type="hidden" id="jumlah_data" name="jumlah_data" value="@if($data->id){{count($data->registration_patiens)}}@else{{'1'}}@endif">
                             <input type="hidden" name="id" value="{{$data->id}}">  
                             <div class="col-sm-12">
                                 <button type="button" class="btn btn-blue-grey waves-effect waves-light" onclick="window.location.href ='{{route($route.'index')}}'"><i class="ion-arrow-left-b"></i> Kembali </button>

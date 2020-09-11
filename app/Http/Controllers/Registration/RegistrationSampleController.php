@@ -12,6 +12,7 @@ use App\Models\Process\Registration;
 use App\Models\Process\RegistrationPatient;
 use App\Models\Process\RegistrationQueue;
 use Carbon\Carbon;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -95,7 +96,13 @@ class RegistrationSampleController extends Controller
             "quota" => $quota_organisation->quota,
             "route" => $this->route
         ];
-        return view($this->route . 'print', $params);
+        
+        PDF::setOptions(['defaultFont' => 'Trebuchet MS']);
+        $pdf = PDF::loadView($this->route . 'print', $params);
+        $pdf->setPaper('a4', 'portrait');
+        $pdf->save(storage_path() . '_filename.pdf');
+        return $pdf->stream('BUKTI-ANTRIAN' . '.pdf', array("Attachment" => false));
+        // return view($this->route . 'print', $params);
     }
 
     public function create()
@@ -124,8 +131,7 @@ class RegistrationSampleController extends Controller
         DB::beginTransaction();
         try {
             $data = Registration::find($id);
-            $data->code = $request->code;
-            $data->date = $request->date;
+            $data->description = $request->description;
             $data->save();
             $name = $request->name;
             $nik = $request->nik;
@@ -316,7 +322,7 @@ class RegistrationSampleController extends Controller
                     $html .= '<a href="javascript:void(0)" onclick="sendData(' . $d->id . ')" class="m-r-15 text-primary" data-toggle="tooltip" data-placement="bottom" title="Kirim" data-original-title="Kirim"><i class="fa fa-send font-20"></i></a>';
                     $html .= '<a href="javascript:void(0)" onclick="deleteData(' . $d->id . ')" class="text-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus" data-original-title="Delete"><i class="mdi mdi-close font-20"></i></a>';
                 } else if ($d->status == '1') {
-                    $html = '<a href="' . route($this->route . 'print', $d->id) . '" class="m-r-15 text-primary" data-toggle="tooltip" data-placement="bottom" title="Print" data-original-title="Edit"><i class="ion-printer font-20"></i></a>';
+                    $html = '<a target="_blank" href="' . route($this->route . 'print', $d->id) . '" class="m-r-15 text-primary" data-toggle="tooltip" data-placement="bottom" title="Print" data-original-title="Edit"><i class="ion-printer font-20"></i></a>';
                     $html .= '<a href="' . route($this->route . 'detail', $d->id) . '" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="bottom" title="Detail" data-original-title="Edit"><i class="ion-android-information font-20"></i></a>';
                 }
                 return $html;

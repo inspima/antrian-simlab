@@ -129,10 +129,8 @@
                 <ul class="navigation-menu">
                     <li>
                         <a href="{{url('/')}}"><i class="mdi mdi-view-dashboard"></i>Dashboard</a>
-                    </li>                    
-                    <li>
-                        <a href="{{route('registration.sample.index')}}"><i class="dripicons-document-edit"></i>Registrasi</a>
                     </li>
+                    @if (session('role')=='Administration')
                     <li class="has-submenu">
                         <a href="#"><i class="mdi mdi-format-list-bulleted-type"></i>Master</a>
                         <ul class="submenu">
@@ -156,12 +154,23 @@
                     <li class="has-submenu">
                         <a href="#"><i class=" ti-pie-chart"></i>Laporan</a>
                         <ul class="submenu">
-                            <li><a href="#">Kuota Harian</a></li>
+                            <li><a href="{{route('report.quota.index')}}">Kuota Harian</a></li>
                         </ul>
-                    </li>
+                    </li>                      
                     <li class="pull-right">
-                        <a href="#">{{strtoupper(session('org_name'))}}</a>
+                        <a href="#">Administrator</a>
                     </li>
+
+                    @elseif(session('role')=='Organization')
+                        
+                        <li>
+                            <a href="{{route('registration.sample.index')}}"><i class="dripicons-document-edit"></i>Registrasi</a>
+                        </li>                        
+                        <li class="pull-right">
+                            <a href="#">{{strtoupper(session('org_name'))}}</a>
+                        </li>
+                    @endif
+                    
                 </ul>
                 <!-- End navigation menu -->
             </div> <!-- end #navigation -->

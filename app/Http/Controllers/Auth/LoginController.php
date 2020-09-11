@@ -55,6 +55,7 @@ class LoginController extends Controller
                 session([
                     'user_id' => $user->id,
                     'user_name' => $user->name,
+                    'role' => $user->role,
                     'org_id' => $organization->id,
                     'org_code' => $organization->code,
                     'org_name' => $organization->name,
