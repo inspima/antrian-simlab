@@ -58,13 +58,14 @@
 <script>
     function swal_delete(url_del, csrf_token) {
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Apakah anda yakin hapus data?',
+            text: "Anda tidak bisa mengembalikan data ini!",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal',
             confirmButtonClass: 'btn btn-primary',
             cancelButtonClass: 'btn btn-danger ml-1',
             buttonsStyling: false,
@@ -98,6 +99,59 @@
                                     type: "error",
                                     title: 'Sorry!',
                                     text: 'Your data failed to delete.',
+                                    confirmButtonClass: 'btn btn-error',
+                                }
+                            )
+                        }
+                    });
+            }
+
+        })
+    }
+
+    function swal_confirm(url_del, csrf_token) {
+        Swal.fire({
+            title: 'Apakah anda yakin melakukan ini?',
+            text: "Mohon cek data terlebih dahulu!",
+            type: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal',
+            confirmButtonClass: 'btn btn-primary',
+            cancelButtonClass: 'btn btn-danger ml-1',
+            buttonsStyling: false,
+        }).then(function (result) {
+
+            if (result.value) {
+
+                $.ajax({
+                    //method: "delete",
+                    type: "POST",
+                    url: url_del,
+                    data: {
+                        "_method": "POST",
+                        "_token": csrf_token,
+                    }
+                })
+                    .done(function (msg) {
+                        if (msg.message == 'success') {
+                            Swal.fire(
+                                {
+                                    type: "success",
+                                    title: 'Saved!',
+                                    text: 'Your data has been seved.',
+                                    confirmButtonClass: 'btn btn-success',
+                                }
+                            )
+                            location.reload();
+                        } else {
+                            Swal.fire(
+                                {
+                                    type: "error",
+                                    title: 'Sorry!',
+                                    text: 'Your data failed to save.',
                                     confirmButtonClass: 'btn btn-error',
                                 }
                             )

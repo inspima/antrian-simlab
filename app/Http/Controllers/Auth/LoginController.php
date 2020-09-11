@@ -49,6 +49,16 @@ class LoginController extends Controller
         if (Auth::check()) {
             if (empty($user->personal)) {
                 Auth::logout();
+            } else {
+                $personal = $user->personal;
+                $organization = $personal->organization;
+                session([
+                    'user_id' => $user->id,
+                    'user_name' => $user->name,
+                    'org_id' => $organization->id,
+                    'org_code' => $organization->code,
+                    'org_name' => $organization->name,
+                ]);
             }
         }
     }

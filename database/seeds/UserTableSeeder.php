@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Account\Personal;
+use App\Models\Account\Role;
 use App\Models\Master\Organization;
 use App\User;
 use Illuminate\Database\Seeder;
@@ -19,6 +20,7 @@ class UserTableSeeder extends Seeder
             'name' => 'Administrator',
             'email' => 'admin@email.com',
             'password' => bcrypt('itdunair'),
+            'role' => Role::find(1)->name,
             // 'avatar' => 'avatar.png'
         ]);
 
@@ -41,6 +43,7 @@ class UserTableSeeder extends Seeder
             'name' => 'RS Berusaha Sehat',
             'email' => 'rs1@email.com',
             'password' => bcrypt('itdunair'),
+            'role' => Role::find(2)->name,
             // 'avatar' => 'avatar.png'
         ]);
 
@@ -63,6 +66,7 @@ class UserTableSeeder extends Seeder
             'name' => 'RS Berjuang Sehat',
             'email' => 'rs2@email.com',
             'password' => bcrypt('itdunair'),
+            'role' => Role::find(2)->name,
             // 'avatar' => 'avatar.png'
         ]);
 
@@ -79,7 +83,5 @@ class UserTableSeeder extends Seeder
             'name' => $user->name,
             'address' => $organization->address,
         ]);
-
-        
     }
 }

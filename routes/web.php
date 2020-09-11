@@ -31,6 +31,17 @@ Route::group(['prefix' => 'attendance'], function () {
     Route::get('/code', 'AttendanceController@getCode')->name('attendance.code');
 });
 
+// Route Master
+Route::group(
+    [
+        'prefix' => 'registration',
+        'namespace' => 'Registration',
+        'middleware' => 'auth'
+    ],
+    function () {
+        require base_path('routes/registration.php');
+    }
+);
 
 
 // Route Master
