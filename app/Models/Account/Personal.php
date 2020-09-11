@@ -13,6 +13,15 @@ class Personal extends Model
 
     protected $table = 'personals';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id', 'organization_id', 'name', 'address', 'phone', 'email', 'mobile'
+    ];
+
     public $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     public function organization()

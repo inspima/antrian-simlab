@@ -1,8 +1,11 @@
 <?php
 
-Route::group(['prefix' => 'general'], function () {
-    Route::get('/', 'GeneralController@index')->name('setting.general.index');
-    Route::get('/{id}/edit', 'GeneralController@edit')->name('setting.general.edit');
-    Route::put('/{id}/update', 'GeneralController@update')->name('setting.general.update');
-    Route::get('/datatable', 'GeneralController@datatable')->name('setting.general.datatable');
+Route::group(['prefix' => 'quota'], function () {
+    Route::get('/', 'QuotaController@index')->name('setting.quota.index');
+    Route::get('/create', 'QuotaController@create')->name('setting.quota.create');
+    Route::get('/{id}/edit', 'QuotaController@edit')->name('setting.quota.edit');
+    Route::post('/store', 'QuotaController@store')->name('setting.quota.store');
+    Route::put('/{id}/update', 'QuotaController@update')->name('setting.quota.update');
+    Route::delete('/{id}/delete', 'QuotaController@delete')->name('setting.quota.delete');
+    Route::get('/datatable', 'QuotaController@datatable')->name('setting.quota.datatable');
 });

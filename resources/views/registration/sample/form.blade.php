@@ -41,9 +41,9 @@
                         @endif
                         @csrf
                         @if($data->id)
-                            <div class="row form-group">
+                            <div class="form-group">
                                 <label for="code">Kode Reg.</label>
-                                <input id="code" name="code" type="text" class="form-control" value="{{$data->code}}" readonly>
+                                <input id="code" name="code" type="text" class="form-control col-sm-4" value="{{$data->code}}" readonly>
                             </div>
                         @else
                             <div class="form-group">
@@ -65,7 +65,7 @@
                         </div>
                         <hr>
                         <h4 class="mt-0 header-title">Data Pasien</h4>
-                        <p class="text-primary m-b-30 font-14">Jumlah maksimal pasien yang bisa anda kirim adalah <b>20</b>.</p>
+                        <p class="text-primary m-b-30 font-14">Jumlah maksimal pasien yang bisa anda kirim adalah <b>{{$quota}}</b>.</p>
                     
                         <div id="patient-template" class="row form-group hide">
                             <div class="col-sm-1">
@@ -88,29 +88,78 @@
                             </div>
                         </div>
                         <div id="patient-section">
-                            <div class="row form-group patient-form">
-                                <div class="col-sm-1">
-                                    <button type="button" class="btn btn-sm btn-primary waves-effect" onclick="addPatient()"><i class="ion-plus-circled"></i> Pasien </button>
+                            @if ($data->id)
+                            @foreach ($data->registration_patiens as $p)
+                                @if ($loop->index==0)
+                                    <div class="row form-group patient-form">
+                                        <div class="col-sm-1">
+                                            <button type="button" class="btn btn-sm btn-primary waves-effect" onclick="addPatient()"><i class="ion-plus-circled"></i> Pasien </button>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" name="name[]" required class="form-control" placeholder="Nama Lengkap" value="{{$p->name}}">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" name="nik[]" required class="form-control" placeholder="NIK (KTP)" value="{{$p->id_number}}">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" name="born_date[]" required class="form-control datepicker" value="{{$p->born_date}}" placeholder="Tanggal Lahir">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <textarea  name="address[]" required class="form-control"  rows="3" placeholder="Alamat Lengkap" style="resize: none" spellcheck="false">{{$p->address}}</textarea>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" name="no_hp[]" class="form-control" placeholder="No HP" value="{{$p->mobile}}">
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="row form-group patient-form">
+                                        <div class="col-sm-1">
+                                            <button type="button" class="btn btn-sm btn-danger waves-effect" onclick="removePatient(this)"><i class="ion-close-circled"></i> Hapus</button>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" name="name[]" required class="form-control" placeholder="Nama Lengkap" value="{{$p->name}}">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" name="nik[]" required class="form-control" placeholder="NIK (KTP)" value="{{$p->id_number}}">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" name="born_date[]" required class="form-control datepicker" value="{{$p->born_date}}" placeholder="Tanggal Lahir">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <textarea  name="address[]" required class="form-control"  rows="3" placeholder="Alamat Lengkap" style="resize: none" spellcheck="false">{{$p->address}}</textarea>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" name="no_hp[]" class="form-control" placeholder="No HP" value="{{$p->mobile}}">
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                            @else
+                                <div class="row form-group patient-form">
+                                    <div class="col-sm-1">
+                                        <button type="button" class="btn btn-sm btn-primary waves-effect" onclick="addPatient()"><i class="ion-plus-circled"></i> Pasien </button>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="text" name="name[]" required class="form-control" placeholder="Nama Lengkap">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="text" name="nik[]" required class="form-control" placeholder="NIK (KTP)">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="text" name="born_date[]" required class="form-control datepicker" value="{{'1980-'.date('m-d')}}" placeholder="Tanggal Lahir">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <textarea  name="address[]" required class="form-control"  rows="3" placeholder="Alamat Lengkap" style="resize: none" spellcheck="false"></textarea>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="text" name="no_hp[]" class="form-control" placeholder="No HP">
+                                    </div>
                                 </div>
-                                <div class="col-sm-2">
-                                    <input type="text" name="name[]" required class="form-control" placeholder="Nama Lengkap">
-                                </div>
-                                <div class="col-sm-2">
-                                    <input type="text" name="nik[]" required class="form-control" placeholder="NIK (KTP)">
-                                </div>
-                                <div class="col-sm-2">
-                                    <input type="text" name="born_date[]" required class="form-control datepicker" value="{{'1980-'.date('m-d')}}" placeholder="Tanggal Lahir">
-                                </div>
-                                <div class="col-sm-3">
-                                    <textarea  name="address[]" required class="form-control"  rows="3" placeholder="Alamat Lengkap" style="resize: none" spellcheck="false"></textarea>
-                                </div>
-                                <div class="col-sm-2">
-                                    <input type="text" name="no_hp[]" class="form-control" placeholder="No HP">
-                                </div>
-                            </div>
+                            @endif                            
                         </div>
                         <hr>
-                        <div class="row form-group">                            
+                        <div class="row form-group">
+                            <input type="hidden" id="max_data" name="max_data" value="{{$quota}}">
                             <input type="hidden" id="jumlah_data" name="jumlah_data" value="1">
                             <input type="hidden" name="id" value="{{$data->id}}">  
                             <div class="col-sm-12">
@@ -162,16 +211,25 @@
         console.log(jumlah_data);
     }
     function addPatient(){
-        var patienFormHtml=$("#patient-template").clone();
-        patienFormHtml.find('#name').removeAttr('id');
-        patienFormHtml.find('#nik').removeAttr('id');
-        patienFormHtml.find('#born_date').removeAttr('id');
-        patienFormHtml.find('#address').removeAttr('id');
-        $('#patient-section').append(patienFormHtml.removeClass('hide').addClass('patient-form'));  
-        var jumlah_data=$('.patient-form').length;                  
-        $('#jumlah_data').val(jumlah_data);
-        console.log(jumlah_data);
-        initComponent();
+        if(($('.patient-form').length+1)<=$('#max_data').val()){            
+            var patienFormHtml=$("#patient-template").clone();
+            patienFormHtml.find('#name').removeAttr('id');
+            patienFormHtml.find('#nik').removeAttr('id');
+            patienFormHtml.find('#born_date').removeAttr('id');
+            patienFormHtml.find('#address').removeAttr('id');
+            $('#patient-section').append(patienFormHtml.removeClass('hide').addClass('patient-form'));  
+            var jumlah_data=$('.patient-form').length;                  
+            $('#jumlah_data').val(jumlah_data);
+            console.log(jumlah_data);
+            initComponent();
+        }else{
+            Swal.fire({
+                type: "error",
+                icon: 'error',
+                title: 'Maaf',
+                text: 'Jumlah melebihi kuota',
+            })
+        }
     }
     $('#btn-submit').click(function(e){
         $('#name').removeAttr('required');

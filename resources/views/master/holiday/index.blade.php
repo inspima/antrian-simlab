@@ -17,10 +17,10 @@
                 <div class="btn-group pull-right">
                     <ol class="breadcrumb hide-phone p-0 m-0">
                         <li class="breadcrumb-item"><a href="#">Master</a></li>
-                        <li class="breadcrumb-item active">Shift</li>
+                        <li class="breadcrumb-item active">Hari Libur</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Shift</h4>
+                <h4 class="page-title">Hari Libur</h4>
             </div>
         </div>
     </div>
@@ -32,9 +32,7 @@
         <div class="col-12">
             <div class="card m-b-20">
                 <div class="card-body">
-                    <a class="btn btn-success" href="{{route('master.shift.create')}}">Create</a>
-                    <br>
-                    <br>
+                    <a class="btn btn-success mb-4" href="{{route($route.'create')}}"><i class="ion-plus-round"></i> Buat Baru</a>
                     <table id="datatable" class="table table-striped dt-responsive nowrap table-vertical" width="100%"
                            cellspacing="0">
                     </table>
@@ -62,7 +60,7 @@
                 "responsive": true,
                 "serverSide": true,
                 "ajax": {
-                    "url": "{{ route('master.shift.datatable') }}",
+                    "url": "{{ route($route.'datatable') }}",
                     "type": "get",
                     "data": function (d) {
                         // d.additional_param = additional_value;
@@ -71,21 +69,10 @@
                 "lengthMenu": [10, 25, 50, 100],
                 "scrollX": true,
                 "columns": [
+                    {data: 'date', title: 'Tanggal', orderable: true, searchable: true},
+                    {data: 'description', title: 'Deskripsi', orderable: true, searchable: true},
                     {
-                        data: 'company_name',
-                        title: 'Company',
-                        orderable: true,
-                        searchable: false
-                    },
-                    {data: 'name', title: 'Shift Name', orderable: true, searchable: true},
-                    {
-                        data: 'time', title: 'Time', orderable: false, searchable: false,
-                        render: function (data) {
-                            return data
-                        }
-                    },
-                    {
-                        data: 'action', title: 'Action', orderable: false, searchable: false,
+                        data: 'action',className: 'text-center', title: 'Action', orderable: false, searchable: false,
                         render: function (data) {
                             return data
                         }
@@ -96,7 +83,7 @@
         });
 
         function deleteData(id) {
-            var url = "{{ route('master.shift.delete', ':id') }}";
+            var url = "{{ route($route.'delete', ':id') }}";
             url = url.replace(':id', id);
             swal_delete(url, "{{csrf_token()}}");
         }

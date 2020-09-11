@@ -13,4 +13,9 @@ class Registration extends Model
     protected $table = 'registrations';
 
     public $dates = ['created_at', 'updated_at', 'deleted_at'];
+
+    public function registration_patiens()
+    {
+        return $this->hasMany(RegistrationPatient::class, 'registration_id', 'id');
+    }
 }

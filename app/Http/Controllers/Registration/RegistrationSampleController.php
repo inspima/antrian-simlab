@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Registration;
 use App\Http\Controllers\Controller;
 use App\Models\HR\Shift;
 use App\Models\HR\WorkGroup;
+use App\Models\Master\Holiday;
+use App\Models\Process\QuotaOrganization;
 use App\Models\Process\QuotaQueue;
 use App\Models\Process\Registration;
 use App\Models\Process\RegistrationPatient;
@@ -54,19 +56,59 @@ class RegistrationSampleController extends Controller
     public function edit(Request $request, $id)
     {
         $data = Registration::find($id);
+        $quota_organisation = QuotaOrganization::where('organization_id', session("org_id"))->first();
+        if (empty($quota_organisation)) {
+            $quota_organisation = QuotaQueue::where('type', 'organization')->first();
+        }
         $params = [
             "data" => $data,
+            "quota" => $quota_organisation->quota,
             "route" => $this->route
         ];
         return view($this->route . 'form', $params);
+    }
+
+    public function detail(Request $request, $id)
+    {
+        $data = Registration::find($id);
+        $quota_organisation = QuotaOrganization::where('organization_id', session("org_id"))->first();
+        if (empty($quota_organisation)) {
+            $quota_organisation = QuotaQueue::where('type', 'organization')->first();
+        }
+        $params = [
+            "data" => $data,
+            "quota" => $quota_organisation->quota,
+            "route" => $this->route
+        ];
+        return view($this->route . 'detail', $params);
+    }
+
+    public function print(Request $request, $id)
+    {
+        $data = Registration::find($id);
+        $quota_organisation = QuotaOrganization::where('organization_id', session("org_id"))->first();
+        if (empty($quota_organisation)) {
+            $quota_organisation = QuotaQueue::where('type', 'organization')->first();
+        }
+        $params = [
+            "data" => $data,
+            "quota" => $quota_organisation->quota,
+            "route" => $this->route
+        ];
+        return view($this->route . 'print', $params);
     }
 
     public function create()
     {
         $data = new Registration();
         $count_data = Registration::where('organization_id', session("org_id"))->withTrashed()->count();
+        $quota_organisation = QuotaOrganization::where('organization_id', session("org_id"))->first();
+        if (empty($quota_organisation)) {
+            $quota_organisation = QuotaQueue::where('type', 'organization')->first();
+        }
         $params = [
             "generate_code" => session("org_code") . '/' . str_pad($count_data + 1, 5, '0', STR_PAD_LEFT),
+            "quota" => $quota_organisation->quota,
             "data" => $data,
             "route" => $this->route
         ];
@@ -196,7 +238,8 @@ class RegistrationSampleController extends Controller
     {
         try {
             $date_queue = date('Y-m-d', strtotime($date . ' +1 day'));
-            if (date('N', strtotime($date_queue)) != '6' && date('N', strtotime($date_queue)) != '7') {
+            $holidays = Holiday::get()->pluck('date')->toArray();
+            if (date('N', strtotime($date_queue)) != '6' && date('N', strtotime($date_queue)) != '7' && !in_array($date_queue, $holidays)) {
                 $registraion_queue = RegistrationQueue::where('date', $date_queue)->first();
                 if (empty($registraion_queue)) {
                     // create new registration queue

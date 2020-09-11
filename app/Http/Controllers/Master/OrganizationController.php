@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account\Personal;
+use App\Models\Account\Role;
 use App\Models\HR\Shift;
 use App\Models\HR\WorkGroup;
 use App\Models\Master\Organization;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -74,7 +77,6 @@ class OrganizationController extends Controller
             'name' => 'required',
             'address' => 'required',
             'phone' => 'required',
-            'email' => 'required',
             'contact_name' => 'required',
         ]);
 
@@ -82,14 +84,12 @@ class OrganizationController extends Controller
         try {
             $data = Organization::find($id);
             $data->name = $request->name;
-            $data->type = $request->type;
             $data->notes = $request->notes;
             $data->country = $request->country;
             $data->province = $request->province;
             $data->city = $request->city;
             $data->address = $request->address;
             $data->phone = $request->phone;
-            $data->email = $request->email;
             $data->contact_name = $request->contact_name;
             $data->contact_mobile = $request->contact_mobile;
             $data->save();
@@ -98,7 +98,7 @@ class OrganizationController extends Controller
             return redirect(route($this->route . 'index'))->with('swal-success', 'success');
         } catch (\Exception $e) {
             DB::rollBack();
-            return Redirect::back()->withErrors(['Failed']);
+            return Redirect::back()->withErrors([$e->getMessage()]);
         }
     }
 
@@ -116,11 +116,13 @@ class OrganizationController extends Controller
         try {
             $data = Organization::withTrashed()->count();
             if ($request->type == 'Rumah Sakit') {
-                $code = "RS/" . str_pad($data + 1, 4, "0", STR_PAD_LEFT);
+                $code = "RS/" . str_pad($data + 1, 6, "0", STR_PAD_LEFT);
             } else if ($request->type == 'Instansi Pemerintah') {
-                $code = "INS/" . str_pad($data + 1, 4, "0", STR_PAD_LEFT);
+                $code = "INST/" . str_pad($data + 1, 6, "0", STR_PAD_LEFT);
             } else if ($request->type == 'Perusahaan') {
-                $code = "PT/" . str_pad($data + 1, 4, "0", STR_PAD_LEFT);
+                $code = "PT/" . str_pad($data + 1, 6, "0", STR_PAD_LEFT);
+            } else if ($request->type == 'Individu') {
+                $code = "INDV/" . str_pad($data + 1, 6, "0", STR_PAD_LEFT);
             }
             $data = new Organization();
             $data->code = $code;
@@ -136,11 +138,25 @@ class OrganizationController extends Controller
             $data->contact_name = $request->contact_name;
             $data->contact_mobile = $request->contact_mobile;
             $data->save();
+
+            $user = User::create([
+                'name' => $request->contact_name,
+                'email' => $request->email,
+                'password' => bcrypt('itdunair'),
+                'role' => Role::find(2)->name,
+                // 'avatar' => 'avatar.png'
+            ]);
+            Personal::create([
+                'user_id' => $user->id,
+                'organization_id' => $data->id,
+                'name' => $user->name,
+                'address' => $data->address,
+            ]);
             DB::commit();
             return redirect(route($this->route . 'index'))->with('swal-success', 'success');
         } catch (\Exception $e) {
             DB::rollBack();
-            return Redirect::back()->withErrors(['Failed']);
+            return Redirect::back()->withErrors([$e->getMessage()]);
         }
     }
 
@@ -166,8 +182,8 @@ class OrganizationController extends Controller
         $data = Organization::get();
         return DataTables::collection($data)
             ->editColumn('action', function ($d) {
-                $html = '<a href="' . route($this->route . 'edit', $d->id) . '" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-18"></i></a>';
-                $html .= '<a href="javascript:void(0)" onclick="deleteData(' . $d->id . ')" class="text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-close font-18"></i></a>';
+                $html = '<a href="' . route($this->route . 'edit', $d->id) . '" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-20"></i></a>';
+                $html .= '<a href="javascript:void(0)" onclick="deleteData(' . $d->id . ')" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-close font-20"></i></a>';
                 return $html;
             })
             ->rawColumns(['action', 'time'])

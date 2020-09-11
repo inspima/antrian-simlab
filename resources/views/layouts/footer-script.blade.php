@@ -38,7 +38,7 @@
         Swal.fire({
             type: "success",
             icon: 'success',
-            title: 'Your work has been saved',
+            title: 'Data berhasil disimpan',
             showConfirmButton: false,
             timer: 1500
         })
@@ -50,7 +50,7 @@
             type: "error",
             icon: 'error',
             title: 'Oops...',
-            text: 'Something went wrong!',
+            text: 'Terjadi kesalahan!',
         })
     </script>
 @endif

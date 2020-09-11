@@ -8,7 +8,8 @@ Route::group(['prefix' => 'organization'], function () {
     Route::put('/{id}/update', 'OrganizationController@update')->name('master.organization.update');
     Route::delete('/{id}/delete', 'OrganizationController@delete')->name('master.organization.delete');
     Route::post('/store', 'OrganizationController@store')->name('master.organization.store');
-    Route::get('/datatable', 'OrganizationController@datatable')->name('master.organization.datatable');
+    Route::get('/datatable', 'OrganizationController@datatable')->name('master.organization.datatable');    
+    Route::get('/select2', 'OrganizationController@select2')->name('master.organization.select2');
 });
 
 // Organization
@@ -19,5 +20,6 @@ Route::group(['prefix' => 'holiday'], function () {
     Route::put('/{id}/update', 'HolidayController@update')->name('master.holiday.update');
     Route::delete('/{id}/delete', 'HolidayController@delete')->name('master.holiday.delete');
     Route::post('/store', 'HolidayController@store')->name('master.holiday.store');
-    Route::get('/datatable', 'HolidayController@datatable')->name('master.holiday.datatable');
+    Route::get('/datatable', 'HolidayController@datatable')->name('master.holiday.datatable');    
+    Route::get('/select2', 'HolidayController@select2')->name('master.holiday.select2');
 });

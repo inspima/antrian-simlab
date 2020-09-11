@@ -17,10 +17,10 @@
                 <div class="btn-group pull-right">
                     <ol class="breadcrumb hide-phone p-0 m-0">
                         <li class="breadcrumb-item"><a href="#">Master</a></li>
-                        <li class="breadcrumb-item active">Company</li>
+                        <li class="breadcrumb-item active">Organisasi</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Company</h4>
+                <h4 class="page-title">Organisasi</h4>
             </div>
         </div>
     </div>
@@ -32,9 +32,7 @@
         <div class="col-12">
             <div class="card m-b-20">
                 <div class="card-body">
-                    <a class="btn btn-success" href="{{route($route.'create')}}">Create</a>
-                    <br>
-                    <br>
+                    <a class="btn btn-success mb-4" href="{{route($route.'create')}}"><i class="ion-plus-round"></i> Buat Baru</a>
                     <table id="datatable" class="table table-striped dt-responsive nowrap table-vertical" width="100%"
                            cellspacing="0">
                     </table>
@@ -71,11 +69,13 @@
                 "lengthMenu": [10, 25, 50, 100],
                 "scrollX": true,
                 "columns": [
-                    {data: 'code', title: 'Code', orderable: true, searchable: true},
-                    {data: 'short_name', title: 'Short Name', orderable: true, searchable: true},
-                    {data: 'name', title: 'Name', orderable: true, searchable: true},
+                    {data: 'code', title: 'Kode', orderable: true, searchable: true},
+                    {data: 'type', title: 'TIpe', orderable: true, searchable: true},
+                    {data: 'name', title: 'Nama', orderable: true, searchable: true},
+                    {data: 'address', title: 'Alamat', orderable: true, searchable: true},
+                    {data: 'phone', title: 'Telepon', orderable: true, searchable: true},
                     {
-                        data: 'action', title: 'Action', orderable: false, searchable: false,
+                        data: 'action',className:'text-center', title: 'Action', orderable: false, searchable: false,
                         render: function (data) {
                             return data
                         }

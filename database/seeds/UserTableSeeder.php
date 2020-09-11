@@ -71,7 +71,7 @@ class UserTableSeeder extends Seeder
         ]);
 
         $organization = Organization::create([
-            'code' => 'RS/000001',
+            'code' => 'RS/000002',
             'type' => 'Rumah Sakit',
             'name' => 'RS Berjuang Sehat',
             'address' => 'Jl.Berjuang 10, Surabaya, Jawa Timur Indonesia',

@@ -5,17 +5,19 @@
 
             <!-- Logo container-->
             <div class="logo">
-                <a href="{{url('/')}}" class="logo">
-                    <img src="{{ URL::asset('assets/images/logo-web-itd.png') }}" alt="" height="40">
+                <a href="{{url('/')}}" class="logo hide-phone">
+                    <img class="" src="{{ URL::asset('assets/images/logo-web-itd.png') }}" alt="" height="40">
                 </a>
-
+                <a href="{{url('/')}}" class="logo d-block d-sm-none" style="font-size: 16px">
+                    {{strtoupper(substr(session('org_name'),0,20))}}
+                </a>
             </div>
             <!-- End Logo container-->
 
             <div class="menu-extras topbar-custom">
 
                 <!-- Search input -->
-                <div class="search-wrap" id="search-wrap">
+                <div class="search-wrap " id="search-wrap">
                     <div class="search-bar">
                         <input class="search-input" type="search" placeholder="Search"/>
                         <a href="#" class="close-search toggle-search" data-target="#search-wrap">
@@ -26,7 +28,7 @@
 
                 <ul class="list-inline float-right mb-0">
                     <!-- Search -->
-                    <li class="list-inline-item dropdown notification-list">
+                    <li class="list-inline-item dropdown notification-list hide-phone">
                         <a class="nav-link waves-effect toggle-search" href="#" data-target="#search-wrap">
                             <i class="mdi mdi-magnify noti-icon"></i>
                         </a>
@@ -39,17 +41,17 @@
                     </li>
 
                     <!-- notification-->
-                    <li class="list-inline-item dropdown notification-list">
+                    <li class="list-inline-item dropdown notification-list hide-phone">
                         <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#"
                            role="button"
                            aria-haspopup="false" aria-expanded="false">
                             <i class="ion-ios7-bell noti-icon"></i>
-                            <span class="badge badge-danger noti-icon-badge">3</span>
+                            <span class="badge badge-danger noti-icon-badge">1</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg">
                             <!-- item-->
                             <div class="dropdown-item noti-title">
-                                <h5>Notification (3)</h5>
+                                <h5>Notification (1)</h5>
                             </div>
 
                             <!-- item-->
@@ -91,9 +93,7 @@
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                             <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i
-                                    class="dripicons-exit text-muted"></i> Logout</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="dripicons-exit text-muted"></i> Logout</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
@@ -128,10 +128,30 @@
                 <!-- Navigation Menu-->
                 <ul class="navigation-menu">
                     <li>
-                        <a class="pl-0" href="{{url('/')}}"><i class="mdi mdi-view-dashboard"></i>Dashboard</a>
+                        <a href="{{url('/')}}"><i class="mdi mdi-view-dashboard"></i>Dashboard</a>
                     </li>                    
                     <li>
-                        <a href="#"><i class="dripicons-document-edit"></i>Registrasi</a>
+                        <a href="{{route('registration.sample.index')}}"><i class="dripicons-document-edit"></i>Registrasi</a>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="#"><i class="mdi mdi-format-list-bulleted-type"></i>Master</a>
+                        <ul class="submenu">
+                            <li><a href="{{route('master.organization.index')}}">Organisasi</a></li>
+                            <li><a href="{{route('master.holiday.index')}}">Hari Libur</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="#"><i class="mdi mdi-wrench"></i>Konfigurasi</a>
+                        <ul class="submenu">
+                            <li><a href="{{route('setting.quota.index')}}">Kuota</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="#"><i class="ion-loop"></i>Sinkronisasi</a>
+                        <ul class="submenu">
+                            <li><a href="#">Data Organisasi</a></li>
+                            <li><a href="#">Data Pasien</a></li>
+                        </ul>
                     </li>
                     <li class="has-submenu">
                         <a href="#"><i class=" ti-pie-chart"></i>Laporan</a>
@@ -139,17 +159,8 @@
                             <li><a href="#">Kuota Harian</a></li>
                         </ul>
                     </li>
-                    <li class="has-submenu">
-                        <a href="#"><i class="mdi mdi-format-list-bulleted-type"></i>Master</a>
-                        <ul class="submenu">
-                            <li><a href="#">Organisasi</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-submenu">
-                        <a href="#"><i class="mdi mdi-wrench"></i>Konfigurasi</a>
-                        <ul class="submenu">
-                            <li><a href="#">Quota</a></li>
-                        </ul>
+                    <li class="pull-right">
+                        <a href="#">{{strtoupper(session('org_name'))}}</a>
                     </li>
                 </ul>
                 <!-- End navigation menu -->
