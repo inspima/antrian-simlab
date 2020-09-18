@@ -1,4 +1,4 @@
-<p align="center"><img src="https://inspima.com/images/logo-i.png"></p>
+<p align="center"><img width="250px" src="https://inspima.com/images/logo-i.png"></p>
 
 
 ## Sistem Antrian - Laboratorium
