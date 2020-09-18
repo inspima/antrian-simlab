@@ -99,7 +99,7 @@
                                             <input type="text" name="name[]" required class="form-control" placeholder="Nama Lengkap" value="{{$p->name}}">
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" name="nik[]" required class="form-control" placeholder="NIK (KTP)" value="{{$p->id_number}}">
+                                            <input type="number" name="nik[]" required class="form-control" placeholder="NIK (KTP)" value="{{$p->id_number}}">
                                         </div>
                                         <div class="col-sm-2">
                                             <input type="text" name="born_date[]" required class="form-control datepicker" value="{{$p->born_date}}" placeholder="Tanggal Lahir">
@@ -120,7 +120,7 @@
                                             <input type="text" name="name[]" required class="form-control" placeholder="Nama Lengkap" value="{{$p->name}}">
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" name="nik[]" required class="form-control" placeholder="NIK (KTP)" value="{{$p->id_number}}">
+                                            <input type="number" name="nik[]" required class="form-control" placeholder="NIK (KTP)" value="{{$p->id_number}}">
                                         </div>
                                         <div class="col-sm-2">
                                             <input type="text" name="born_date[]" required class="form-control datepicker" value="{{$p->born_date}}" placeholder="Tanggal Lahir">
@@ -143,7 +143,7 @@
                                         <input type="text" name="name[]" required class="form-control" placeholder="Nama Lengkap">
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="text" name="nik[]" required class="form-control" placeholder="NIK (KTP)">
+                                        <input type="number" name="nik[]" required class="form-control" placeholder="NIK (KTP)">
                                     </div>
                                     <div class="col-sm-2">
                                         <input type="text" name="born_date[]" required class="form-control datepicker" value="{{'1980-'.date('m-d')}}" placeholder="Tanggal Lahir">
