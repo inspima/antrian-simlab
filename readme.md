@@ -5,24 +5,18 @@
 
 ### Instalasi
 
-1. Clone project 
-``` 
-git clone https://inspima@bitbucket.org/inspima-creative/antrian-simlab.git 
-```
-2. Install composer
-``` 
-composer install
-```
-4. Konfigurasi aplikasi
+1. Clone project ```git clone https://usernamebitbucket@bitbucket.org/inspima-creative/antrian-simlab.git ```
+2. Install composer ```composer install```
+3. Konfigurasi aplikasi
    - copy file env.example jadi .env
    - Sesuaikan dengan koneksi database
    - generate key ```php artisan key:generate```
    - update storage ```php artisan storage:link```
 
-5. Install database
+4. Install database
    - Migrasi database ``` php artisan migrate:fresh --seed``` 
    - Pastikan database sudah ada
-6. Run Project ```php artisan serve```
+5. Run Project ```php artisan serve```
 
 ## License
 
