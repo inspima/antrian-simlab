@@ -5,7 +5,7 @@
 
 ### Instalasi
 
-1. Clone project ```git clone https://usernamebitbucket@bitbucket.org/inspima-creative/antrian-simlab.git ```
+1. Clone project ```git clone```
 2. Install composer ```composer install```
 3. Konfigurasi aplikasi
    - copy file env.example jadi .env
