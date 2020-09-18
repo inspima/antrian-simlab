@@ -8,7 +8,7 @@
 1. Clone project ```git clone```
 2. Install composer ```composer install```
 3. Konfigurasi aplikasi
-   - copy file env.example jadi .env
+   - copy file ```env.example``` jadi ```.env```
    - Sesuaikan dengan koneksi database
    - generate key ```php artisan key:generate```
    - update storage ```php artisan storage:link```
