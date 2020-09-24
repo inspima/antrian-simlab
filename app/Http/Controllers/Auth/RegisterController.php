@@ -4,9 +4,19 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Mail\NewUserRegistration;
+use App\Models\Account\Personal;
+use App\Models\Account\Role;
+use App\Models\Master\Organization;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -40,8 +50,10 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:255'],
+            'contact_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
 
@@ -53,10 +65,52 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $data['password'] = Str::random(10);
+        $organization_count = Organization::withTrashed()->count();
+        $code = '';
+        if ($data['type'] == 'Rumah Sakit') {
+            $code = "RS/" . str_pad($organization_count + 1, 6, "0", STR_PAD_LEFT);
+        } else if ($data['type']  == 'Instansi Pemerintah') {
+            $code = "INST/" . str_pad($organization_count + 1, 6, "0", STR_PAD_LEFT);
+        } else if ($data['type']  == 'Perusahaan') {
+            $code = "PT/" . str_pad($organization_count + 1, 6, "0", STR_PAD_LEFT);
+        } else if ($data['type']  == 'Individu') {
+            $code = "INDV/" . str_pad($organization_count + 1, 6, "0", STR_PAD_LEFT);
+        }
+        $organization = new Organization();
+        $organization->code = $code;
+        $organization->name = $data['name'];
+        $organization->type = $data['type'];
+        $organization->address = $data['address'];
+        $organization->phone = $data['phone'];
+        $organization->email = $data['email'];
+        $organization->contact_name = $data['contact_name'];
+        $organization->save();
+
+        $user = User::create([
+            'name' => $data['contact_name'],
+            'email' =>  $data['email'],
+            'password' => bcrypt($data['password']),
+            'role' => Role::find(2)->name,
         ]);
+        Personal::create([
+            'user_id' => $user->id,
+            'organization_id' => $organization->id,
+            'name' => $user->name,
+            'address' => $organization->address,
+        ]);
+        DB::commit();
+        Mail::to($data['email'])->send(new NewUserRegistration($data));
+        return $user;
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath())->with('toast-success', 'success')->with('success', 'Registrasi Sukses. Silahkan cek email.');
     }
 }

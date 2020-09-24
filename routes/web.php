@@ -24,12 +24,6 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/grafik', 'DashboardController@grafik')->name('dashboard.grafik');
 });
 
-// Attendance
-Route::group(['prefix' => 'attendance'], function () {
-    Route::get('/', 'AttendanceController@index')->name('attendance.index');
-    Route::post('/check', 'AttendanceController@check')->name('attendance.check');
-    Route::get('/code', 'AttendanceController@getCode')->name('attendance.code');
-});
 
 // Route Master
 Route::group(

@@ -75,7 +75,7 @@
                                 <input type="text" id="name" name="name[]" required class="form-control" placeholder="Nama Lengkap">
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" id="nik" name="nik[]" required class="form-control" placeholder="NIK (KTP)">
+                                <input type="number" id="nik" name="nik[]" required class="form-control" placeholder="NIK (KTP)">
                             </div>
                             <div class="col-sm-2">
                                 <input type="text" id="born_date"  name="born_date[]" required class="form-control datepicker" value="{{'1980-'.date('m-d')}}" placeholder="Tanggal Lahir">
