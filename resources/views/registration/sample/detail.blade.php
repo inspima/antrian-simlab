@@ -63,6 +63,7 @@
                                 <th class="text-center">Umur</th>
                                 <th>Alamat</th>
                                 <th class="text-center">No Kontak</th>
+                                <th class="text-center">Tes Ke</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,6 +75,7 @@
                                 <td class="text-center">{{$p->age}} Tahun</td>
                                 <td>{{$p->address}}</td>
                                 <td class="text-center">{{$p->mobile}}</td>
+                                <td class="text-center">{{$p->test_loop}}</td>
                             </tr>
                             @endforeach 
                         </tbody>

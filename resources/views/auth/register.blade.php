@@ -8,7 +8,7 @@
             <div class="card"  style="background-color: #005493;color:white">
                 <div class="card-body" >
                     <h3 class="text-center m-0">
-                        <a href="index" class="logo logo-admin"><img src="{{ URL::asset('assets/images/logo-web-itd.png') }}" width="400" alt="logo"></a>
+                        <a href="index" class="logo logo-admin"><img src="{{ URL::asset('assets/images/logo-web-itd.png') }}" width="90%" alt="logo"></a>
                     </h3>                    
                     <div class="p-3">
                         <h4 class=" font-18 m-b-5 text-center">Registrasi Instansi</h4>

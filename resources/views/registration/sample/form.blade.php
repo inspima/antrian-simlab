@@ -78,13 +78,16 @@
                                 <input type="number" id="nik" name="nik[]" required class="form-control" placeholder="NIK (KTP)">
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" id="born_date"  name="born_date[]" required class="form-control datepicker" value="{{'1980-'.date('m-d')}}" placeholder="Tanggal Lahir">
+                                <input type="text" id="born_date"  name="born_date[]" required class="form-control datepicker"  placeholder="Tanggal Lahir">
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <textarea id="address" name="address[]" required class="form-control"  rows="3" placeholder="Alamat Lengkap" style="resize: none" spellcheck="false"></textarea>
                             </div>
                             <div class="col-sm-2">
                                 <input type="text" id="no_hp" name="no_hp[]" class="form-control" placeholder="No HP">
+                            </div>                            
+                            <div class="col-sm-1">
+                                <input type="text" id="test_loop" name="test_loop[]" class="form-control" placeholder="Tes Ke">
                             </div>
                         </div>
                         <div id="patient-section">
@@ -104,11 +107,14 @@
                                         <div class="col-sm-2">
                                             <input type="text" name="born_date[]" required class="form-control datepicker" value="{{$p->born_date}}" placeholder="Tanggal Lahir">
                                         </div>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-2">
                                             <textarea  name="address[]" required class="form-control"  rows="3" placeholder="Alamat Lengkap" style="resize: none" spellcheck="false">{{$p->address}}</textarea>
                                         </div>
                                         <div class="col-sm-2">
                                             <input type="text" name="no_hp[]" class="form-control" placeholder="No HP" value="{{$p->mobile}}">
+                                        </div>                                                                 
+                                        <div class="col-sm-1">
+                                            <input type="text" id="test_loop" name="test_loop[]" class="form-control" value="{{$p->test_loop}}" placeholder="Tes Ke">
                                         </div>
                                     </div>
                                 @else
@@ -125,11 +131,14 @@
                                         <div class="col-sm-2">
                                             <input type="text" name="born_date[]" required class="form-control datepicker" value="{{$p->born_date}}" placeholder="Tanggal Lahir">
                                         </div>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-2">
                                             <textarea  name="address[]" required class="form-control"  rows="3" placeholder="Alamat Lengkap" style="resize: none" spellcheck="false">{{$p->address}}</textarea>
                                         </div>
                                         <div class="col-sm-2">
                                             <input type="text" name="no_hp[]" class="form-control" placeholder="No HP" value="{{$p->mobile}}">
+                                        </div>                                                               
+                                        <div class="col-sm-1">
+                                            <input type="text" id="test_loop" name="test_loop[]" class="form-control" value="{{$p->test_loop}}" placeholder="Tes Ke">
                                         </div>
                                     </div>
                                 @endif
@@ -146,17 +155,28 @@
                                         <input type="number" name="nik[]" required class="form-control" placeholder="NIK (KTP)">
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="text" name="born_date[]" required class="form-control datepicker" value="{{'1980-'.date('m-d')}}" placeholder="Tanggal Lahir">
+                                        <input type="text" name="born_date[]" required class="form-control datepicker"  placeholder="Tanggal Lahir">
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <textarea  name="address[]" required class="form-control"  rows="3" placeholder="Alamat Lengkap" style="resize: none" spellcheck="false"></textarea>
                                     </div>
                                     <div class="col-sm-2">
                                         <input type="text" name="no_hp[]" class="form-control" placeholder="No HP">
+                                    </div>                       
+                                    <div class="col-sm-1">
+                                        <input type="text" id="test_loop" name="test_loop[]" class="form-control" placeholder="Tes Ke">
                                     </div>
                                 </div>
                             @endif                            
                         </div>
+                        <div class="form-group m-t-10 mb-0 row">
+                            <div class="col-sm-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" value="1" required name="all_new_record" id="all_new_record" {{ $data->all_new_record=='1' ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="all_new_record" style="font-weight: normal">Dengan ini anda setuju bahwa data tersebut telah terdaftar sebagai <b>All New Record</b></label>
+                                </div>
+                            </div>
+                         </div>
                         <hr>
                         <div class="row form-group">
                             <input type="hidden" id="max_data" name="max_data" value="{{$quota}}">
@@ -241,6 +261,7 @@
         $('#born_date').removeAttr('name');
         $('#address').removeAttr('name');
         $('#no_hp').removeAttr('name');
+        $('#test_loop').removeAttr('name');
         return true;
     })
     </script>

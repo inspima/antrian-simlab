@@ -24,6 +24,7 @@ class CreateRegistrationPatientsTable extends Migration
             $table->text('address');
             $table->string('phone')->nullable();
             $table->string('mobile', 50)->nullable();
+            $table->integer('test_loop')->default(0);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();

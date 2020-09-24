@@ -24,6 +24,7 @@ class CreateRegistrationsTable extends Migration
             $table->date('queue_date')->nullable();
             $table->string('queue_notes')->nullable();
             $table->string('status')->default(0)->comment("0=Draft,1=Proses Antrian,2=Selesai");
+            $table->string('all_new_record')->default(0)->comment("0=No,1=Yes");
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();

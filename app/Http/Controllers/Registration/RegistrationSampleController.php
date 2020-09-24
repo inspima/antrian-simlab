@@ -137,6 +137,7 @@ class RegistrationSampleController extends Controller
             $born_date = $request->born_date;
             $address = $request->address;
             $no_hp = $request->no_hp;
+            $test_loop = $request->test_loop;
             if ($request->jumlah_data > 0) {
                 RegistrationPatient::where('registration_id', $data->id)->forceDelete();
             }
@@ -151,6 +152,7 @@ class RegistrationSampleController extends Controller
                     $data_patient->age = Carbon::parse($born_date[$i])->age;
                     $data_patient->address = $address[$i];
                     $data_patient->mobile = $no_hp[$i];
+                    $data_patient->test_loop = $test_loop[$i];
                     $data_patient->save();
                 }
             }
@@ -168,7 +170,6 @@ class RegistrationSampleController extends Controller
         request()->validate([
             'date' => 'required',
         ]);
-
         DB::beginTransaction();
         try {
             $data = new Registration();
@@ -176,12 +177,14 @@ class RegistrationSampleController extends Controller
             $data->organization_id = session('org_id');
             $data->description = $request->description;
             $data->date = $request->date;
+            $data->all_new_record = $request->all_new_record;
             $data->save();
             $name = $request->name;
             $nik = $request->nik;
             $born_date = $request->born_date;
             $address = $request->address;
             $no_hp = $request->no_hp;
+            $test_loop = $request->test_loop;
             for ($i = 0; $i < $request->jumlah_data; $i++) {
                 if (!empty($name[$i]) && !empty($nik[$i])) {
                     $data_patient = new RegistrationPatient();
@@ -193,6 +196,7 @@ class RegistrationSampleController extends Controller
                     $data_patient->age = Carbon::parse($born_date[$i])->age;
                     $data_patient->address = $address[$i];
                     $data_patient->mobile = $no_hp[$i];
+                    $data_patient->test_loop = $test_loop[$i];
                     $data_patient->save();
                 }
             }
