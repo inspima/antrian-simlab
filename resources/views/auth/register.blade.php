@@ -49,7 +49,7 @@
 
                             <div class="form-group row m-t-20">
                                 <div class="col-6 text-left">
-                                    <a href="{{route('login')}}" class="btn btn-secondary w-md waves-effect waves-light">Kembali</a>
+                                    <a href="{{route('login')}}" class="btn btn-light w-md waves-effect waves-light">Kembali</a>
                                 </div>
                                 <div class="col-6 text-right">
                                     <button class="btn btn-warning w-md waves-effect waves-light" type="submit">Daftar</button>

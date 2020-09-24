@@ -11,7 +11,7 @@
              </h3>
              <div class="px-3">
                  <h4 class="font-22 m-b-5 text-center">Sistem Antrian</h4>
-                 <p class="text-center">Sign in untuk lanjut.</p>
+                 <p class="text-center">Masukkan akun anda.</p>
 
                  <form class="form-horizontal m-t-10" method="POST" action="{{ route('login') }}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -44,23 +44,20 @@
                             </div>
                         </div>
                         
-                         <div class="col-sm-6 text-right">
+                         {{-- <div class="col-sm-6 text-right">
                             <a href="pages-recoverpw-2" style="color: white"><i class="mdi mdi-lock"></i> Lupa password?</a>
-                         </div>
+                         </div> --}}
                      </div>
                      <div class="form-group row m-t-20">
-                        <div class="col-sm-12">
-                           <button class="btn btn-block btn-info w-md waves-effect waves-light" type="submit">Log In</button>
+                        <div class="col-sm-6">
+                           <button class="btn btn-block btn-primary w-md waves-effect waves-light" type="submit">Log In</button>
+                        </div>
+                        <div class="col-sm-6">
+                           <a class="btn btn-block btn-warning w-md waves-effect waves-light" href="{{route('register')}}">Daftar</a>
                         </div>
                     </div>
-
-                     <div class="form-group row m-t-20">
-                         <div class="col-sm-12">
-                            <a class="btn btn-block btn-warning w-md waves-effect waves-light" href="{{route('register')}}">Daftar</a>
-                         </div>
-                     </div>
                  </form>
-                 <p class="text-center m-t-40">©{{date('Y')}}.ITD Unair.</p>
+                 <p class="text-center" style="margin-top: 100px">©{{date('Y')}}. ITD Unair.</p>
              </div>
 
          </div>  
