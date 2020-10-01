@@ -135,6 +135,7 @@ class RegistrationSampleController extends Controller
             $name = $request->name;
             $nik = $request->nik;
             $born_date = $request->born_date;
+            $gender = $request->gender;
             $address = $request->address;
             $no_hp = $request->no_hp;
             $test_loop = $request->test_loop;
@@ -150,6 +151,7 @@ class RegistrationSampleController extends Controller
                     $data_patient->name = $name[$i];
                     $data_patient->born_date = $born_date[$i];
                     $data_patient->age = Carbon::parse($born_date[$i])->age;
+                    $data_patient->gender = $gender[$i];
                     $data_patient->address = $address[$i];
                     $data_patient->mobile = $no_hp[$i];
                     $data_patient->test_loop = $test_loop[$i];
@@ -161,7 +163,7 @@ class RegistrationSampleController extends Controller
             return redirect(route($this->route . 'index'))->with('swal-success', 'success');
         } catch (\Exception $e) {
             DB::rollBack();
-            return Redirect::back()->withErrors(['Failed']);
+            return Redirect::back()->withErrors([$e->getMessage()]);
         }
     }
 
@@ -182,6 +184,7 @@ class RegistrationSampleController extends Controller
             $name = $request->name;
             $nik = $request->nik;
             $born_date = $request->born_date;
+            $gender = $request->gender;
             $address = $request->address;
             $no_hp = $request->no_hp;
             $test_loop = $request->test_loop;
@@ -194,6 +197,7 @@ class RegistrationSampleController extends Controller
                     $data_patient->name = $name[$i];
                     $data_patient->born_date = $born_date[$i];
                     $data_patient->age = Carbon::parse($born_date[$i])->age;
+                    $data_patient->gender = $gender[$i];
                     $data_patient->address = $address[$i];
                     $data_patient->mobile = $no_hp[$i];
                     $data_patient->test_loop = $test_loop[$i];

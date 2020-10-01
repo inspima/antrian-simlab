@@ -61,6 +61,7 @@
                                 <th class="text-center">No. KTP</th>
                                 <th class="text-center">Tgl Lahir</th>
                                 <th class="text-center">Umur</th>
+                                <th class="text-center">J.Kelamin</th>
                                 <th>Alamat</th>
                                 <th class="text-center">No Kontak</th>
                                 <th class="text-center">Tes Ke</th>
@@ -73,6 +74,7 @@
                                 <td class="text-center">{{$p->id_number}}</td>
                                 <td class="text-center">{{Carbon\Carbon::parse($p->born_date)->translatedFormat('d F Y')}}</td>
                                 <td class="text-center">{{$p->age}} Tahun</td>
+                                <td class="text-center">{{$p->age}}</td>
                                 <td>{{$p->address}}</td>
                                 <td class="text-center">{{$p->mobile}}</td>
                                 <td class="text-center">{{$p->test_loop}}</td>

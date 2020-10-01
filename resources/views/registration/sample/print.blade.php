@@ -83,6 +83,8 @@
                     <b style="font-size: 1.2em;font-weight: bold">{{$data->code}}</b><br/>
                     Kode Antrian<br/>
                     <b style="font-size: 1.2em;font-weight: bold">{{$data->queue_code}}</b><br/>
+                    <br/>       
+                    <img src="data:image/png;base64,{{DNS1D::getBarcodePNG(preg_replace('/[^0-9]/', '', $data->code), 'C39')}} " alt="barcode"  width="250" height="50" />
                     <br/>
                     Silahkan kirim sampel anda pada<br/>
                     Tanggal <br/>

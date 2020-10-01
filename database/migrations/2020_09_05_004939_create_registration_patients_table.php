@@ -20,6 +20,7 @@ class CreateRegistrationPatientsTable extends Migration
             $table->string('id_number', 50);
             $table->string('name');
             $table->string('age');
+            $table->string('gender');
             $table->date('born_date');
             $table->text('address');
             $table->string('phone')->nullable();

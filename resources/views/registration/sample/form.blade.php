@@ -71,16 +71,20 @@
                             <div class="col-sm-1">
                                 <button type="button" class="btn btn-sm btn-danger waves-effect" onclick="removePatient(this)"><i class="ion-close-circled"></i> Hapus</button>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-3">
                                 <input type="text" id="name" name="name[]" required class="form-control" placeholder="Nama Lengkap">
-                            </div>
-                            <div class="col-sm-2">
+                                <hr/>
                                 <input type="number" id="nik" name="nik[]" required class="form-control" placeholder="NIK (KTP)">
                             </div>
                             <div class="col-sm-2">
                                 <input type="text" id="born_date"  name="born_date[]" required class="form-control datepicker"  placeholder="Tanggal Lahir">
+                                <hr/>
+                                <select name="gender[]" id="gender" required class="form-control">
+                                    <option value="Laki-Laki">Laki-Laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-3">
                                 <textarea id="address" name="address[]" required class="form-control"  rows="3" placeholder="Alamat Lengkap" style="resize: none" spellcheck="false"></textarea>
                             </div>
                             <div class="col-sm-2">
@@ -98,23 +102,27 @@
                                         <div class="col-sm-1">
                                             <button type="button" class="btn btn-sm btn-primary waves-effect" onclick="addPatient()"><i class="ion-plus-circled"></i> Pasien </button>
                                         </div>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-3">
                                             <input type="text" name="name[]" required class="form-control" placeholder="Nama Lengkap" value="{{$p->name}}">
-                                        </div>
-                                        <div class="col-sm-2">
+                                            <hr/>
                                             <input type="number" name="nik[]" required class="form-control" placeholder="NIK (KTP)" value="{{$p->id_number}}">
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" name="born_date[]" required class="form-control datepicker" value="{{$p->born_date}}" placeholder="Tanggal Lahir">
+                                            <input type="text" name="born_date[]" required class="form-control datepicker" value="{{$p->born_date}}" placeholder="Tgl.Lhr">
+                                            <hr/>
+                                            <select name="gender[]" required class="form-control">
+                                                <option @if ($p->gender=='Laki-Laki') selected @endif value="Laki-Laki">Laki-Laki</option>
+                                                <option @if ($p->gender=='Perempuan') selected @endif value="Perempuan">Perempuan</option>
+                                            </select>
                                         </div>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-3">
                                             <textarea  name="address[]" required class="form-control"  rows="3" placeholder="Alamat Lengkap" style="resize: none" spellcheck="false">{{$p->address}}</textarea>
                                         </div>
                                         <div class="col-sm-2">
                                             <input type="text" name="no_hp[]" class="form-control" placeholder="No HP" value="{{$p->mobile}}">
                                         </div>                                                                 
                                         <div class="col-sm-1">
-                                            <input type="text" id="test_loop" name="test_loop[]" class="form-control" value="{{$p->test_loop}}" placeholder="Tes Ke">
+                                            <input type="text" name="test_loop[]" class="form-control" value="{{$p->test_loop}}" placeholder="Tes Ke">
                                         </div>
                                     </div>
                                 @else
@@ -122,16 +130,20 @@
                                         <div class="col-sm-1">
                                             <button type="button" class="btn btn-sm btn-danger waves-effect" onclick="removePatient(this)"><i class="ion-close-circled"></i> Hapus</button>
                                         </div>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-3">
                                             <input type="text" name="name[]" required class="form-control" placeholder="Nama Lengkap" value="{{$p->name}}">
-                                        </div>
-                                        <div class="col-sm-2">
+                                            <hr/>
                                             <input type="number" name="nik[]" required class="form-control" placeholder="NIK (KTP)" value="{{$p->id_number}}">
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" name="born_date[]" required class="form-control datepicker" value="{{$p->born_date}}" placeholder="Tanggal Lahir">
+                                            <input type="text" name="born_date[]" required class="form-control datepicker" value="{{$p->born_date}}" placeholder="Tgl.Lhr">
+                                            <hr/>
+                                            <select name="gender[]" required class="form-control">
+                                                <option @if ($p->gender=='Laki-Laki') selected @endif value="Laki-Laki">Laki-Laki</option>
+                                                <option @if ($p->gender=='Perempuan') selected @endif value="Perempuan">Perempuan</option>
+                                            </select>
                                         </div>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-3">
                                             <textarea  name="address[]" required class="form-control"  rows="3" placeholder="Alamat Lengkap" style="resize: none" spellcheck="false">{{$p->address}}</textarea>
                                         </div>
                                         <div class="col-sm-2">
@@ -148,23 +160,27 @@
                                     <div class="col-sm-1">
                                         <button type="button" class="btn btn-sm btn-primary waves-effect" onclick="addPatient()"><i class="ion-plus-circled"></i> Pasien </button>
                                     </div>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                         <input type="text" name="name[]" required class="form-control" placeholder="Nama Lengkap">
-                                    </div>
-                                    <div class="col-sm-2">
+                                        <hr/>
                                         <input type="number" name="nik[]" required class="form-control" placeholder="NIK (KTP)">
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="text" name="born_date[]" required class="form-control datepicker"  placeholder="Tanggal Lahir">
+                                        <input type="text" name="born_date[]" required class="form-control datepicker"  placeholder="Tgl.Lhr">
+                                        <hr/>
+                                        <select name="gender[]" required class="form-control">
+                                            <option value="Laki-Laki">Laki-Laki</option>
+                                            <option value="Perempuan">Perempuan</option>
+                                        </select>
                                     </div>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                         <textarea  name="address[]" required class="form-control"  rows="3" placeholder="Alamat Lengkap" style="resize: none" spellcheck="false"></textarea>
                                     </div>
                                     <div class="col-sm-2">
                                         <input type="text" name="no_hp[]" class="form-control" placeholder="No HP">
                                     </div>                       
                                     <div class="col-sm-1">
-                                        <input type="text" id="test_loop" name="test_loop[]" class="form-control" placeholder="Tes Ke">
+                                        <input type="text" name="test_loop[]" class="form-control" placeholder="Tes Ke">
                                     </div>
                                 </div>
                             @endif                            
@@ -255,10 +271,12 @@
         $('#name').removeAttr('required');
         $('#nik').removeAttr('required');
         $('#born_date').removeAttr('required');
+        $('#gender').removeAttr('required');
         $('#address').removeAttr('required');
         $('#name').removeAttr('name');
         $('#nik').removeAttr('name');
         $('#born_date').removeAttr('name');
+        $('#gender').removeAttr('name');
         $('#address').removeAttr('name');
         $('#no_hp').removeAttr('name');
         $('#test_loop').removeAttr('name');
