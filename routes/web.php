@@ -20,7 +20,7 @@ Route::get('/', 'DashboardController@index');
 
 // Dashboard
 Route::group(['prefix' => 'dashboard'], function () {
-    Route::get('/percentage', 'DashboardController@percentage')->name('dashboard.percentage');
+    Route::get('/datatable/monitoring-quota', 'DashboardController@datatableMonitoringQuota')->name('dashboard.datatable-monitoring-quota');
     Route::get('/grafik', 'DashboardController@grafik')->name('dashboard.grafik');
 });
 
