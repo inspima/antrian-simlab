@@ -49,10 +49,10 @@
                          </div> --}}
                      </div>
                      <div class="form-group row m-t-20">
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 m-t-5">
                            <button class="btn btn-block btn-primary w-md waves-effect waves-light" type="submit">Log In</button>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 m-t-5">
                            <a class="btn btn-block btn-warning w-md waves-effect waves-light" href="{{route('register')}}">Daftar</a>
                         </div>
                     </div>
