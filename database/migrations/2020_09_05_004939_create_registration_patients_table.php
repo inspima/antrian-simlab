@@ -14,7 +14,7 @@ class CreateRegistrationPatientsTable extends Migration
     public function up()
     {
         Schema::create('registration_patients', function (Blueprint $table) {
-            $table->bigIncrements('id');            
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('registration_id');
             $table->string('id_type', 50)->default('KTP')->nullable();
             $table->string('id_number', 50);
@@ -26,6 +26,8 @@ class CreateRegistrationPatientsTable extends Migration
             $table->string('phone')->nullable();
             $table->string('mobile', 50)->nullable();
             $table->integer('test_loop')->default(0);
+            $table->integer('sync_status')->default(0)->comment("0=Belum Sync,1= Proses Pengujian, 2=Keluar Hasil");
+            $table->string('simlab_reg_code')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();

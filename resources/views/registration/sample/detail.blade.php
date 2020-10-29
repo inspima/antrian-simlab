@@ -65,6 +65,7 @@
                                 <th>Alamat</th>
                                 <th class="text-center">No Kontak</th>
                                 <th class="text-center">Tes Ke</th>
+                                <th class="text-center">Status Pemeriksaan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -78,6 +79,19 @@
                                 <td>{{$p->address}}</td>
                                 <td class="text-center">{{$p->mobile}}</td>
                                 <td class="text-center">{{$p->test_loop}}</td>
+                                <td class="text-center">
+                                    @if ($p->sync_status=='0')
+                                        <span class="badge badge-danger font-14">Belum Diproses</span>
+                                    @elseif ($p->sync_status=='1')
+                                        <span class="badge badge-info font-14">Proses Pengujian</span><br/>
+                                        Kode Reg. : <br/>
+                                        <b style="font-size: 0.9em">{{$p->simlab_reg_code}}</b>
+                                    @elseif ($p->sync_status=='2')
+                                        <span class="badge badge-success font-14">Sudah Selesai</span><br/>
+                                        Kode Reg. : <br/>
+                                        <b style="font-size: 0.9em">{{$p->simlab_reg_code}}</b>
+                                    @endif
+                                </td>
                             </tr>
                             @endforeach 
                         </tbody>
