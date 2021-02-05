@@ -41,8 +41,7 @@
             left join dokter d on d.id_dokter=rp.id_dokter_pengirim
             join pasien_tipe pt on pt.id_pasien_tipe =rp.id_pasien_tipe
             where rp.no_registrasi='{$no_registrasi}'";
-            $reg_results = DB::connection('mysql-simlab')->select($query);
-            return $reg_results[0];
+            return collect(DB::connection('mysql-simlab')->select($query))->first();
         }
 
         private function getPasienPemeriksaanSimlab($no_registrasi)
@@ -145,13 +144,15 @@
 
         public function print(Request $request, $id)
         {
-            $data = Registration::find($id);
+            $reg = Registration::find($id);
+            $patiens = RegistrationPatient::where('registration_id', $reg->id)->get();
             $quota_organisation = QuotaOrganization::where('organization_id', session("org_id"))->first();
             if (empty($quota_organisation)) {
                 $quota_organisation = QuotaQueue::where('type', 'organization')->first();
             }
             $params = [
-                "data" => $data,
+                "reg" => $reg,
+                "patiens" => $patiens,
                 "quota" => $quota_organisation->quota,
                 "route" => $this->route
             ];
@@ -159,19 +160,23 @@
             $pdf = PDF::loadView($this->route . 'print', $params);
             $pdf->setPaper('a4', 'portrait');
             $pdf->save(storage_path() . '_filename.pdf');
-            return $pdf->stream('BUKTI-ANTRIAN-' . $data->code . '.pdf', array("Attachment" => false));
-            // return view($this->route . 'print', $params);
+            return $pdf->stream('BUKTI-REGISTRASI-' . $reg->code . '.pdf', array("Attachment" => false));
+            //             return view($this->route . 'print', $params);
         }
 
         public function printResult(Request $request, $id)
         {
             $reg_patien = RegistrationPatient::find($id);
             $reg = Registration::find($reg_patien->registration_id);
+            $reg_simlab = $this->getRegistrasiSimlab($reg_patien->simlab_reg_code);
             $reg_patiens_simlabs = $this->getPasienPemeriksaanSimlab($reg_patien->simlab_reg_code);
+            $user_pj = collect(DB::connection('mysql-simlab')->select("select * from pegawai where id_pegawai='55'"))->first();
             $params = [
                 "reg" => $reg,
                 "reg_patient" => $reg_patien,
+                "reg_simlab" => $reg_simlab,
                 "reg_patient_simlabs" => $reg_patiens_simlabs,
+                'user_pj' => $user_pj,
                 "route" => $this->route
             ];
             PDF::setOptions(['defaultFont' => 'Trebuchet MS']);

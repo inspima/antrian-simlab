@@ -10,7 +10,6 @@
         body {
             font-family: "Trebuchet MS";
             font-size: 14px;
-            font-weight: bolder;
         }
 
         h2, h3 {
@@ -149,43 +148,55 @@
         }
     </style>
 </head>
-<table class="tbl-head-border" style="border: 1px solid black;">
-    <tr>
-        <td style="text-align: center">
-            <img height="85" width="85" src="{{URL::asset('assets/images/logo_unair.gif')}}"/>
-        </td>
-        <td>
-            <h3 style="text-align: left">TROPICAL DISEASE DIAGNOSTIC CENTER</h3>
-            <address style="margin: 4px 0px;font-weight: 300" class="align-left">
-                Institute of Tropical Disease (Lembaga Penyakit Tropis)<br/>
-                Universitas Airlangga<br/>
-                Ex.Tropical Disease Center (TDC), Kampus C Unair, Jl.Mulyorejo Surabaya -60115<br/>
-                Telp. (031) 5992445-46, Fax. (031) 5992445 <br/>
-                Email : <span style="text-decoration: underline">sekretariat@itd.unair.ac.id</span> Website:
-                <span style="text-decoration: underline">www.itd.unair.ac.id</span> <br/>
-            </address>
-        </td>
-    </tr>
-</table>
+<body>
+<p align="center">
+    <img src="{{asset('assets/images/header.png')}}"/>
+</p>
+
 
 <table class="tbl">
     <tr>
         <td style="text-align: center;">
-            <h3 style="text-align: center;padding: 5px">HASIL PEMERIKSAAN</h3>
-        </td>
-    </tr>
-    <tr>
-        <td style="border: 1px solid black;">
-            <p style="text-align: center;font-size: 1.1em;margin-top: 20px">
-                Kode Registrasi<br/>
-                <b style="font-size: 1.2em;font-weight: bold">{{ $reg->code }}</b><br/>
-                Nama<br/>
-                <b style="font-size: 1.2em;font-weight: bold">{{ $reg_patient->name }}</b><br/>
-                <br/>
-            </p>
+            <h2 style="text-align: center;padding: 5px">HASIL PEMERIKSAAN LABORATORIUM</h2>
         </td>
     </tr>
 </table>
+<br/>
+<table class="tbl">
+    <tr>
+        <td style="border: 1px solid black;padding: 15px 10px">
+            <table class="tbl">
+                <tr>
+                    <td><b>Nama Pasien</b></td>
+                    <td> : {{ $reg_simlab->nama_pasien }}</td>
+                    <td><b>Umur</b></td>
+                    <td> : {{ is_numeric($reg_simlab->umur) ? "" . $reg_simlab->umur . " th " : $reg_simlab->umur }}</td>
+                </tr>
+                <tr>
+                    <td><b>Alamat Pasien</b></td>
+                    <td> : {{ $reg_simlab->alamat_pasien }}</td>
+                    <td><b>Telephone</b></td>
+                    <td> : {{ $reg_simlab->telephone }} / {{ $reg_simlab->hp }}</td>
+                </tr>
+                <tr>
+                    <td><b>Dokter Pengirim</b></td>
+                    <td> : {{ $reg_simlab->gelar_depan }} {{ $reg_simlab->nama_dokter }} {{ $reg_simlab->gelar_belakang }}</td>
+                    <td><b>No.Registrasi</b></td>
+                    <td> : {{ $reg_simlab->no_registrasi }}</td>
+
+                </tr>
+                <tr>
+                    <td><b>Instansi Pengirim</b></td>
+                    <td> : {{ $reg_simlab->nama_instansi }}</td>
+
+                    <td><b>Waktu Registrasi</b></td>
+                    <td> : {{ $reg_simlab->waktu_registrasi }}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<br/>
 <br/>
 <table class="tbl">
     <thead>
@@ -199,54 +210,94 @@
     </tr>
     </thead>
     <tbody id="pemeriksaan-pembayaran-data-table ">
-    @php
-        $no = 1;
-        foreach ($reg_patient_simlabs as $d):
-            $status_validasi = $d->status_validasi;
-            ?>
-            <tr>
-                <td style="text-align: center;padding-left:5%;border: 1px solid grey;font-weight: normal"><?php echo $d->nama_pengujian ?></td>
-                        <?php
-                    foreach ($d->data_sample as $ds) {
-                        if ($ds->id_pemeriksaan_sample != '') {
-                            echo '- ' . $ds->nama_sample . '<br/>';
-                        }
+    @foreach($reg_patient_simlabs as $no=>$d)
+        <tr>
+            <td style="text-align: center;padding-left:5%;border: 1px solid grey;font-weight: normal">{{ $d->nama_pengujian }}</td>
+            @php
+                foreach ($d->data_sample as $ds) {
+                    if ($ds->id_pemeriksaan_sample != '') {
+                        echo '- ' . $ds->nama_sample . '<br/>';
                     }
-                ?>
-                        </td>
-                        -->
-                <td style="text-align: center;border: 1px solid grey;font-weight: normal"><?php echo $d->hasil_pengujian; ?></td>
-                <td style="text-align: center;border: 1px solid grey;font-weight: normal"><?php echo $d->nilai_normal; ?></td>
-            </tr>
-            <?php
-            if (count($d->data_child) > 0) {
-                $no_child = 1;
-                foreach ($d->data_child as $dc) {
-                    ?>
-                    <tr>
-                        <td style="text-align: left;padding-left:5%;border: 1px solid grey;">- <?php echo $dc->nama_pengujian ?></td>
-                        <td style="text-align: center;border: 1px solid grey">
-                            <?php echo strip_tags($dc->hasil_pengujian) ?>
-                        </td>
-                        <td style="text-align: center;border: 1px solid grey;"><?php echo $dc->nilai_normal ?></td>
-                    </tr>
-                    <?php
-                    $no_child++;
                 }
-            }
-            $no++;
-        endforeach;
-    @endphp
+            @endphp
+            </td>
+            <td style="text-align: center;border: 1px solid grey;font-weight: normal">{{ $d->hasil_pengujian }}</td>
+            <td style="text-align: center;border: 1px solid grey;font-weight: normal">{{ $d->nilai_normal }}</td>
+        </tr>
+        @if(count($d->data_child)>0)
+            @foreach($d->data_child as $no_child=>$dc)
+                <tr>
+                    <td style="text-align: left;padding-left:5%;border: 1px solid grey;">- {{ $dc->nama_pengujian  }}</td>
+                    <td style="text-align: center;border: 1px solid grey">
+                        {{ strip_tags($dc->hasil_pengujian)  }}
+                    </td>
+                    <td style="text-align: center;border: 1px solid grey;">{{ $dc->nilai_normal }}</td>
+                </tr>
+            @endforeach
+        @endif
+    @endforeach
+
 
     </tbody>
 </table>
 <br/>
-<table class="tbl">
+<table class="tbl " style="width: 100%;height: 200px;">
+    <tfoot>
     <tr>
-        <td colspan="3" style="text-align: center">
-            <p>Tanggal cetak : <i><br/><b>{{ Carbon\Carbon::parse(date('Y-m-d'))->formatLocalized('%d %B %Y').' '.date('H:i:s') }}</b></i></p>
+        <td style="border: none"></td>
+        <td style="border: none">
+
         </td>
     </tr>
+    <tr>
+        <td style="text-align: left;width: 60%;padding-left:10px">
+            <br/>
+            <div class="pull-left">
+                <div class="pull-right">
+                    <p style="text-align: left">
+                        Catatan : <br/> <b>{{ $d->keterangan_pemeriksaan }}</b>
+
+
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </p>
+                    <table>
+                        <tr>
+                            <td>Dicetak Oleh : <b>{{session('user_name')}}</b></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Waktu Cetak : <b>{{ Carbon\Carbon::parse(date('Y-m-d'))->formatLocalized('%d %B %Y').' ' }}
+                                    {{ date('H:i:s') }}
+                                </b>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </td>
+        <td style="text-align: right;padding-left:10%;width: 40%">
+            <br/>
+            <div class="pull-left">
+
+                <div style="text-align: center">
+                    Surabaya {{ \App\Helpers\TextformattingHelper::getDateIndo(date('Y-m-d')) }}<br/>
+                    <b>Manajer Teknis </b>
+                    <br/>
+                    <br/>
+                    <img width=120" src="{{ asset('assets/images/nrt-ttd.png')  }}"/>
+                    <br/>
+                    ({{ $user_pj->gelar_depan . ' ' . $user_pj->nama_pegawai . ' ' . $user_pj->gelar_belakang }})
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tfoot>
 </table>
 </body>
 </html>
