@@ -47,10 +47,9 @@
             }
         }
 
-        public function updateStatus(Request $request)
+        public function updateStatus(Request $request,$id)
         {
-            $id = $request->post('id');
-            $status = $request->post('status');
+            $status = $request->get('status');
             try {
                 $reg_patient = RegistrationPatient::find($id);
                 if (!empty($reg_patient)) {

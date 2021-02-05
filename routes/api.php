@@ -36,7 +36,7 @@ Route::group(
         ],
         function () {
             Route::post('verify-code', 'ApiRegistrasiController@verifyCode');
-            Route::post('update-status', 'ApiRegistrasiController@updateStatus');
+            Route::get('update-status/{id}', 'ApiRegistrasiController@updateStatus');
         }
     );
 
