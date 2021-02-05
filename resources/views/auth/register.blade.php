@@ -9,14 +9,14 @@
                 <div class="card-body" >
                     <h3 class="text-center m-0">
                         <a href="index" class="logo logo-admin"><img src="{{ URL::asset('assets/images/logo-web-itd.png') }}" width="90%" alt="logo"></a>
-                    </h3>                    
+                    </h3>
                     <div class="p-3">
                         <h4 class=" font-18 m-b-5 text-center">Registrasi Instansi</h4>
                         <p class="text-center">Silahkan lengkapi data.</p>
 
                         <form class="form-horizontal m-t-10" method="POST" action="{{ route('register') }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            
+
                             <div class="form-group ">
                                 <label for="type" >Tipe Organisasi</label>
                                 <select class="form-control" name="type">
@@ -39,9 +39,14 @@
                                 <input class="form-control"  name="phone" type="text" value="" placeholder="031-9114412">
                             </div>
                             <div class="form-group ">
-                                <label for="email" >Email (<span class="text-info font-12" >Data ini akan digunakan untuk login</span>)</label>                                
+                                <label for="phone" >Nomor Whatsapp (<span class="text-info font-12" >digunakan untuk notifikasi</span>)</label>
+                                <i></i>
+                                <input class="form-control"  name="whatsapp" type="text" value="" placeholder="08123456789" required>
+                            </div>
+                            <div class="form-group ">
+                                <label for="email" >Email (<span class="text-info font-12" >digunakan untuk konfirmasi</span>)</label>
                                 <input class="form-control"  name="email" type="text" value="" placeholder="email@organisasi.com" required>
-                            </div>                        
+                            </div>
                             <div class="form-group ">
                                 <label for="contact_name" >Nama Kontak</label>
                                 <input class="form-control"  name="contact_name" type="text" value="" placeholder="Nama PIC" required>

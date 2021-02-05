@@ -28,6 +28,7 @@ class CreateRegistrationPatientsTable extends Migration
             $table->integer('test_loop')->default(0);
             $table->integer('sync_status')->default(0)->comment("0=Belum Sync,1= Proses Pengujian, 2=Keluar Hasil");
             $table->string('simlab_reg_code')->nullable();
+            $table->string('simlab_verify_code')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();

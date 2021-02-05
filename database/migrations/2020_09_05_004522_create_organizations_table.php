@@ -23,6 +23,7 @@ class CreateOrganizationsTable extends Migration
             $table->string('province')->nullable();
             $table->string('city')->nullable();
             $table->string('address');
+            $table->string('whatsapp')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('contact_name')->nullable();

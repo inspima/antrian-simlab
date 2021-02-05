@@ -26,22 +26,17 @@ Route::group(
         Route::post('login', 'AuthController@login');
         Route::post('logout', 'AuthController@logout');
         Route::post('refresh', 'AuthController@refresh');
-        Route::post('me', 'AuthController@me');
-        Route::post('change_password', 'AuthController@changePassword');
-        Route::get('/user', function (Request $request) {
-            return $request->user();
-        });
     }
 );
 
-Route::group(
-    [
-        'namespace' => 'Api',
-        'prefix' => 'attendance'
-    ],
-    function () {
-        Route::any('sync/{user_id}', 'AttendanceMobileController@sync');
-        Route::post('scan_qr', 'AttendanceMobileController@scanQr');
-        Route::post('upload_picture', 'AttendanceMobileController@uploadPicture');
-    }
-);
+    Route::group(
+        [
+            'namespace' => 'Api',
+            'prefix' => 'registrasi'
+        ],
+        function () {
+            Route::post('verify-code', 'ApiRegistrasiController@verifyCode');
+            Route::post('update-status', 'ApiRegistrasiController@updateStatus');
+        }
+    );
+

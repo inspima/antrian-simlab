@@ -28,11 +28,11 @@
                     <h4 class="mt-0 header-title">Detail Registrasi</h4>
                     <hr/>
                     <div class="form-group">
-                        <label for="code">Kode Reg.</label>                        
+                        <label for="code">Kode Reg.</label>
                         <p class="text-muted m-b-30 font-14">{{$data->code}}</p>
                     </div>
                     <div class="form-group">
-                        <label for="org">Nama Organisasi</label>  
+                        <label for="org">Nama Organisasi</label>
                         <p class="text-muted m-b-30 font-14">{{session('org_name')}}</p>
                     </div>
                     <div class="form-group ">
@@ -40,15 +40,15 @@
                         <p class="text-muted m-b-30 font-14">{{$data->date}}</p>
                     </div>
                     <div class="form-group">
-                        <label for="name">Catatan</label>                        
+                        <label for="name">Catatan</label>
                         <p class="text-muted m-b-30 font-14">{{$data->description}}</p>
                     </div>
                     <div class="form-group">
-                        <label for="name">Tanggal Antrian</label>                        
+                        <label for="name">Tanggal Antrian</label>
                         <p class="text-muted m-b-30 font-14">{{Carbon\Carbon::parse($data->queue_date)->translatedFormat('l, d F Y')}}</p>
                     </div>
                     <div class="form-group">
-                        <label for="name">Status</label><br/>                     
+                        <label for="name">Status</label><br/>
                         <span class="badge badge-success font-14">Terkirim</span>
                     </div>
                     <hr>
@@ -90,12 +90,13 @@
                                         <span class="badge badge-success font-14">Sudah Selesai</span><br/>
                                         Kode Reg. : <br/>
                                         <b style="font-size: 0.9em">{{$p->simlab_reg_code}}</b>
+                                        <a target="_blank" style="color: white" class="btn btn-sm btn-primary waves-effect waves-light" href="<?=route('registration.sample.print-result',$p->id) ?>"><i class="fa fa-print"></i> Cetak Hasil</a>
                                     @endif
                                 </td>
                             </tr>
-                            @endforeach 
+                            @endforeach
                         </tbody>
-                    </table>                   
+                    </table>
                     <hr>
                     <div class="row form-group">
                         <div class="col-sm-12">
@@ -109,11 +110,11 @@
 @endsection
 
 @section('css')
-    
+
 @endsection
 
 @section('script')
-    
+
 @endsection
 
 @section('script-bottom')
