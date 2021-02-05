@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder
         // Create default user
         $user = User::create([
             'name' => 'Administrator',
-            'email' => 'admin@email.com',
+            'email' => 'admin@itd.unair.ac.id',
             'password' => bcrypt('itdunair'),
             'role' => Role::find(1)->name,
             // 'avatar' => 'avatar.png'
@@ -37,51 +37,51 @@ class UserTableSeeder extends Seeder
             'name' => $user->name,
             'address' => $organization->address,
         ]);
-
-        // Create default user
-        $user = User::create([
-            'name' => 'RS Berusaha Sehat',
-            'email' => 'rs1@email.com',
-            'password' => bcrypt('itdunair'),
-            'role' => Role::find(2)->name,
-            // 'avatar' => 'avatar.png'
-        ]);
-
-        $organization = Organization::create([
-            'code' => 'RS/000001',
-            'type' => 'Rumah Sakit',
-            'name' => 'RS Berusaha Sehat',
-            'address' => 'Jl.Berusaha 10, Surabaya, Jawa Timur Indonesia',
-        ]);
-
-        Personal::create([
-            'user_id' => $user->id,
-            'organization_id' => $organization->id,
-            'name' => $user->name,
-            'address' => $organization->address,
-        ]);
-
-        // Create default user
-        $user = User::create([
-            'name' => 'RS Berjuang Sehat',
-            'email' => 'rs2@email.com',
-            'password' => bcrypt('itdunair'),
-            'role' => Role::find(2)->name,
-            // 'avatar' => 'avatar.png'
-        ]);
-
-        $organization = Organization::create([
-            'code' => 'RS/000002',
-            'type' => 'Rumah Sakit',
-            'name' => 'RS Berjuang Sehat',
-            'address' => 'Jl.Berjuang 10, Surabaya, Jawa Timur Indonesia',
-        ]);
-
-        Personal::create([
-            'user_id' => $user->id,
-            'organization_id' => $organization->id,
-            'name' => $user->name,
-            'address' => $organization->address,
-        ]);
+//
+//        // Create default user
+//        $user = User::create([
+//            'name' => 'RS Berusaha Sehat',
+//            'email' => 'rs1@email.com',
+//            'password' => bcrypt('itdunair'),
+//            'role' => Role::find(2)->name,
+//            // 'avatar' => 'avatar.png'
+//        ]);
+//
+//        $organization = Organization::create([
+//            'code' => 'RS/000001',
+//            'type' => 'Rumah Sakit',
+//            'name' => 'RS Berusaha Sehat',
+//            'address' => 'Jl.Berusaha 10, Surabaya, Jawa Timur Indonesia',
+//        ]);
+//
+//        Personal::create([
+//            'user_id' => $user->id,
+//            'organization_id' => $organization->id,
+//            'name' => $user->name,
+//            'address' => $organization->address,
+//        ]);
+//
+//        // Create default user
+//        $user = User::create([
+//            'name' => 'RS Berjuang Sehat',
+//            'email' => 'rs2@email.com',
+//            'password' => bcrypt('itdunair'),
+//            'role' => Role::find(2)->name,
+//            // 'avatar' => 'avatar.png'
+//        ]);
+//
+//        $organization = Organization::create([
+//            'code' => 'RS/000002',
+//            'type' => 'Rumah Sakit',
+//            'name' => 'RS Berjuang Sehat',
+//            'address' => 'Jl.Berjuang 10, Surabaya, Jawa Timur Indonesia',
+//        ]);
+//
+//        Personal::create([
+//            'user_id' => $user->id,
+//            'organization_id' => $organization->id,
+//            'name' => $user->name,
+//            'address' => $organization->address,
+//        ]);
     }
 }
