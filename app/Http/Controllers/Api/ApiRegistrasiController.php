@@ -67,7 +67,7 @@
                             'Atas Nama ' . $reg_patient->name . ' [lb][lb]' .
                             'Hasil bisa diambil langsung [lb]' .
                             'Atau cek link dibawah ini untuk melihat hasil [lb]' .
-                            route('registration.sample.print-result',$reg_patient->id) . '[lb]' 
+                            route('registration.sample.print-result',$reg_patient->id) . '[lb]',
                         'to_number' => $org->whatsapp,
                     ];
                     $notification_helper->send($data);
