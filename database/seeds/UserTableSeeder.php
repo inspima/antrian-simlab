@@ -26,9 +26,9 @@ class UserTableSeeder extends Seeder
 
         $organization = Organization::create([
             'code' => 'CO/000001',
-            'type' => 'Perusahaan',
-            'name' => 'Inspima Creative Technology',
-            'address' => 'Jl.Margorejo 7a, Surabaya, Jawa Timur Indonesia',
+            'type' => 'Instansi Pemerintah',
+            'name' => 'Institute of Tropical Disease - Unair',
+            'address' => 'Kampus C, Jl. Unair, Mulyorejo, Gubeng, Surabaya City, East Java 60286',
         ]);
 
         Personal::create([

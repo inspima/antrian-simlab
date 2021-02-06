@@ -34,6 +34,13 @@
         }
     );
 
+    // Account
+    Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
+        Route::get('/profile', 'AccountController@profile')->name('account.profile');
+        Route::post('/profile/update', 'AccountController@updateProfile')->name('account.profile-update');
+        Route::post('/profile/update-password', 'AccountController@updatePassword')->name('account.profile-update-password');
+    });
+
 
     // Route Registration
     Route::group(

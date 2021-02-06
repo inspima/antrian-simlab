@@ -43,9 +43,9 @@
                                  class="rounded-circle">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                            <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
+                            <a class="dropdown-item" href="{{route('account.profile')}}"><i class="dripicons-user text-muted"></i> Profile</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="dripicons-exit text-muted"></i> Logout</a>
+                            <a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="dripicons-exit text-muted"></i> Logout</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
@@ -83,28 +83,28 @@
                         <a href="{{url('/')}}"><i class="mdi mdi-view-dashboard"></i>Dashboard</a>
                     </li>
                     @if (session('role')=='Administration')
-                    <li class="has-submenu">
-                        <a href="#"><i class="mdi mdi-format-list-bulleted-type"></i>Master</a>
-                        <ul class="submenu">
-                            <li><a href="{{route('master.organization.index')}}">Organisasi</a></li>
-                            <li><a href="{{route('master.holiday.index')}}">Hari Libur</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-submenu">
-                        <a href="#"><i class="mdi mdi-wrench"></i>Konfigurasi</a>
-                        <ul class="submenu">
-                            <li><a href="{{route('setting.quota.index')}}">Kuota</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-submenu">
-                        <a href="#"><i class=" ti-pie-chart"></i>Laporan</a>
-                        <ul class="submenu">
-                            <li><a href="{{route('report.quota.index')}}">Kuota Harian</a></li>
-                        </ul>
-                    </li>
-                    <li class="pull-right">
-                        <a href="#">Administrator</a>
-                    </li>
+                        <li class="has-submenu">
+                            <a href="#"><i class="mdi mdi-format-list-bulleted-type"></i>Master</a>
+                            <ul class="submenu">
+                                <li><a href="{{route('master.organization.index')}}">Organisasi</a></li>
+                                <li><a href="{{route('master.holiday.index')}}">Hari Libur</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#"><i class="mdi mdi-wrench"></i>Konfigurasi</a>
+                            <ul class="submenu">
+                                <li><a href="{{route('setting.quota.index')}}">Kuota</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#"><i class=" ti-pie-chart"></i>Laporan</a>
+                            <ul class="submenu">
+                                <li><a href="{{route('report.quota.index')}}">Kuota Harian</a></li>
+                            </ul>
+                        </li>
+                        <li class="pull-right">
+                            <a href="#">Administrator</a>
+                        </li>
 
                     @elseif(session('role')=='Organization')
 
