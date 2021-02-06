@@ -2,10 +2,13 @@
 
     namespace App\Http\Controllers\Registration;
 
+    use App\Helpers\NotificationHelper;
+    use App\Helpers\TextformattingHelper;
     use App\Http\Controllers\Controller;
     use App\Models\HR\Shift;
     use App\Models\HR\WorkGroup;
     use App\Models\Master\Holiday;
+    use App\Models\Master\Organization;
     use App\Models\Process\QuotaOrganization;
     use App\Models\Process\QuotaQueue;
     use App\Models\Process\Registration;
@@ -318,6 +321,25 @@
             DB::beginTransaction();
             try {
                 $this->searchQueue(date('Y-m-d'), $id);
+                $reg = Registration::find($id);
+                $org = Organization::find($reg->organization_id);
+                $reg_patients = RegistrationPatient::where('registration_id',$reg->id)->get();
+                // Send Notification
+                $notification_helper = new NotificationHelper();
+                $list_patient_str ='';
+                foreach($reg_patients as $index=>$patient){
+                    $list_patient_str.=($index + 1).'. '.$patient->name.'[lb]';
+                }
+                $data = [
+                    'message' => "Pendaftaran anda diterima, silahkan datang pada [lb]" .
+                        'Tanggal '.TextformattingHelper::getDateIndo($reg->queue_date).' waktu 09.00 -10.00 WIB [lb][lb]'.
+                        'Daftar nama pasien pengirim sample [lb]' .
+                        $list_patient_str.'[lb]'.
+                        'Harap Print kemudian bawa bukti pendaftaran, dari link dibawah ini [lb][lb]' .
+                        route('registration.sample.print',$reg->id) . '[lb]',
+                    'to_number' => $org->whatsapp,
+                ];
+                $notification_helper->send($data);
                 DB::commit();
                 return response()->json([
                     'message' => 'success',

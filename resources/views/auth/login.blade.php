@@ -10,7 +10,7 @@
                  <a href="./" class="logo logo-admin"><img src="{{ URL::asset('assets/images/logo-web-itd.png') }}" width="400" alt="logo"></a>
              </h3>
              <div class="px-3">
-                 <h4 class="font-22 m-b-5 text-center">Sistem Antrian</h4>
+                 <h4 class="font-22 m-b-5 text-center">{{ getenv('APP_NAME') }}</h4>
                  <p class="text-center">Masukkan akun anda.</p>
 
                  <form class="form-horizontal m-t-10" method="POST" action="{{ route('login') }}">
@@ -43,7 +43,7 @@
                                 <label class="custom-control-label" for="remember">Simpan login</label>
                             </div>
                         </div>
-                        
+
                          {{-- <div class="col-sm-6 text-right">
                             <a href="pages-recoverpw-2" style="color: white"><i class="mdi mdi-lock"></i> Lupa password?</a>
                          </div> --}}
@@ -60,7 +60,7 @@
                  <p class="text-center" style="margin-top: 100px">©{{date('Y')}}. ITD Unair.</p>
              </div>
 
-         </div>  
+         </div>
      </div>
  </div>
 @endsection

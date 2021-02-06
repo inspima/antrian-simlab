@@ -5,6 +5,7 @@
 <script src="{{ URL::asset('assets/js/waves.js') }}"></script>
 <script src="{{ URL::asset('assets/js/jquery.nicescroll.js') }}"></script>
 <script src="{{ URL::asset('assets/js/jquery.scrollTo.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/custom.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/toastr/toastr.min.js') }}"></script>
 
 <script src="{{ URL::asset('assets/plugins/sweet-alert2/sweetalert2.all.min.js') }}"></script>
@@ -80,9 +81,14 @@
                     data: {
                         "_method": "DELETE",
                         "_token": csrf_token,
-                    }
+                    },
+                    beforeSend: function () {
+                        // setting a timeout
+                        loading(true);
+                    },
                 })
                     .done(function (msg) {
+                        loading(false);
                         if (msg.message == 'success') {
                             Swal.fire(
                                 {
@@ -133,9 +139,14 @@
                     data: {
                         "_method": "POST",
                         "_token": csrf_token,
-                    }
+                    },
+                    beforeSend: function () {
+                        // setting a timeout
+                        loading(true);
+                    },
                 })
                     .done(function (msg) {
+                        loading(false);
                         if (msg.message == 'success') {
                             Swal.fire(
                                 {

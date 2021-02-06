@@ -150,7 +150,7 @@
 </head>
 <body>
 <p align="center">
-    <img src="{{asset('assets/images/header.png')}}"/>
+    <img src="assets/images/header.png"/>
 </p>
 
 
@@ -167,10 +167,10 @@
         <td style="border: 1px solid black;padding: 15px 10px">
             <table class="tbl">
                 <tr>
-                    <td><b>Nama Pasien</b></td>
-                    <td> : {{ $reg_simlab->nama_pasien }}</td>
-                    <td><b>Umur</b></td>
-                    <td> : {{ is_numeric($reg_simlab->umur) ? "" . $reg_simlab->umur . " th " : $reg_simlab->umur }}</td>
+                    <td style="width: 20%"><b>Nama Pasien</b></td>
+                    <td style="width: 30%"> : {{ $reg_simlab->nama_pasien }}</td>
+                    <td style="width: 20%"><b>Umur</b></td>
+                    <td style="width: 30%"> : {{ is_numeric($reg_simlab->umur) ? "" . $reg_simlab->umur . " th " : $reg_simlab->umur }}</td>
                 </tr>
                 <tr>
                     <td><b>Alamat Pasien</b></td>
@@ -290,7 +290,7 @@
                     <b>Manajer Teknis </b>
                     <br/>
                     <br/>
-                    <img width=120" src="{{ asset('assets/images/nrt-ttd.png')  }}"/>
+                    <img width=120" src="assets/images/nrt-ttd.png"/>
                     <br/>
                     ({{ $user_pj->gelar_depan . ' ' . $user_pj->nama_pegawai . ' ' . $user_pj->gelar_belakang }})
                 </div>
