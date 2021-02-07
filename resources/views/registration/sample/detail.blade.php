@@ -90,7 +90,7 @@
                                         <span class="badge badge-success font-14">Sudah Selesai</span><br/>
                                         Kode Reg. : <br/>
                                         <b style="font-size: 0.9em">{{$p->simlab_reg_code}}</b><br/>
-                                        <a target="_blank" style="color: white" class="btn btn-sm btn-primary waves-effect waves-light" href="<?=route('registration.sample.print-result',$p->id) ?>"><i class="fa fa-print"></i> Cetak Hasil</a>
+                                        <a target="_blank" style="color: white" class="btn btn-sm btn-primary waves-effect waves-light" href="<?=route('registration.sample.print-result',base64_encode(md5($p->id))) ?>"><i class="fa fa-print"></i> Cetak Hasil</a>
                                     @endif
                                 </td>
                             </tr>

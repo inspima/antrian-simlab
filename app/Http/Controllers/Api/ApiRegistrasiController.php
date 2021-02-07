@@ -10,6 +10,7 @@
     use App\Models\Process\RegistrationPatient;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Crypt;
     use Illuminate\Support\Facades\File;
 
     class ApiRegistrasiController extends Controller
@@ -66,7 +67,7 @@
                             'Atas Nama ' . $reg_patient->name . ' [lb][lb]' .
                             'Hasil bisa diambil langsung [lb]' .
                             'Atau cek link dibawah ini untuk melihat hasil [lb][lb]' .
-                            route('registration.sample.print-result',$reg_patient->id) . '[lb]',
+                            route('registration.sample.print-result',base64_encode(md5($reg_patient->id))) . '[lb]',
                         'to_number' => $org->whatsapp,
                     ];
                     $notification_helper->send($data);

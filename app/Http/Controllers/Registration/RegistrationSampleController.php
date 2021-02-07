@@ -17,6 +17,7 @@
     use Barryvdh\DomPDF\Facade as PDF;
     use Carbon\Carbon;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Crypt;
     use Illuminate\Support\Facades\DB;
     use Illuminate\Support\Facades\Redirect;
     use Yajra\DataTables\Facades\DataTables;
@@ -145,9 +146,10 @@
             return view($this->route . 'detail', $params);
         }
 
-        public function print(Request $request, $id)
+        public function print(Request $request, $key)
         {
-            $reg = Registration::find($id);
+            $id = base64_decode($key);
+            $reg = Registration::whereRaw('md5(id)=?',[$id])->first();
             $patiens = RegistrationPatient::where('registration_id', $reg->id)->get();
             $quota_organisation = QuotaOrganization::where('organization_id', session("org_id"))->first();
             if (empty($quota_organisation)) {
@@ -167,9 +169,10 @@
             //             return view($this->route . 'print', $params);
         }
 
-        public function printResult(Request $request, $id)
+        public function printResult(Request $request, $key)
         {
-            $reg_patien = RegistrationPatient::find($id);
+            $id = base64_decode($key);
+            $reg_patien = RegistrationPatient::whereRaw('md5(id)=?',[$id])->first();
             $reg = Registration::find($reg_patien->registration_id);
             $reg_simlab = $this->getRegistrasiSimlab($reg_patien->simlab_reg_code);
             $reg_patiens_simlabs = $this->getPasienPemeriksaanSimlab($reg_patien->simlab_reg_code);
@@ -337,7 +340,7 @@
                         'Daftar nama pasien pengirim sample [lb]' .
                         $list_patient_str.'[lb]'.
                         'Harap Print kemudian bawa bukti pendaftaran, dari link dibawah ini [lb][lb]' .
-                        route('registration.sample.print',$reg->id) . '[lb]',
+                        route('registration.sample.print',base64_encode(md5($reg->id))) . '[lb]',
                     'to_number' => $org->whatsapp,
                 ];
                 $notification_helper->send($data);
@@ -435,7 +438,7 @@
                         $html .= '<a href="javascript:void(0)" onclick="sendData(' . $d->id . ')" class="m-r-15 text-primary" data-toggle="tooltip" data-placement="bottom" title="Kirim" data-original-title="Kirim"><i class="fa fa-send font-20"></i></a>';
                         $html .= '<a href="javascript:void(0)" onclick="deleteData(' . $d->id . ')" class="text-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus" data-original-title="Delete"><i class="mdi mdi-close font-20"></i></a>';
                     } else if ($d->status == '1') {
-                        $html = '<a target="_blank" href="' . route($this->route . 'print', $d->id) . '" class="m-r-15 text-primary" data-toggle="tooltip" data-placement="bottom" title="Print" data-original-title="Edit"><i class="ion-printer font-20"></i></a>';
+                        $html = '<a target="_blank" href="' . route($this->route . 'print', base64_encode(md5($d->id))) . '" class="m-r-15 text-primary" data-toggle="tooltip" data-placement="bottom" title="Print" data-original-title="Edit"><i class="ion-printer font-20"></i></a>';
                         $html .= '<a href="' . route($this->route . 'detail', $d->id) . '" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="bottom" title="Detail" data-original-title="Edit"><i class="ion-android-information font-20"></i></a>';
                     }
                     return $html;
