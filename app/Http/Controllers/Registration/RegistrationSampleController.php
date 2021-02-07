@@ -332,7 +332,8 @@
                 }
                 $data = [
                     'message' => "Pendaftaran anda diterima, silahkan datang pada [lb]" .
-                        'Tanggal '.TextformattingHelper::getDateIndo($reg->queue_date).' waktu 09.00 -10.00 WIB [lb][lb]'.
+                        'Hari / Tanggal : '.Carbon::parse($reg->queue_date)->translatedFormat('l, d F Y').'[lb] '.
+                        'Waktu : 09.00 -10.00 WIB [lb][lb]'.
                         'Daftar nama pasien pengirim sample [lb]' .
                         $list_patient_str.'[lb]'.
                         'Harap Print kemudian bawa bukti pendaftaran, dari link dibawah ini [lb][lb]' .
