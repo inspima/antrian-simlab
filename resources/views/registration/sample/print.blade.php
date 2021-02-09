@@ -150,7 +150,7 @@
 </head>
 @foreach($patiens as $index=>$patien)
     <p align="center">
-        <img src="assets/images/header.png"/>
+        <img src="assets/images/header-no-nomer.png"/>
     </p>
 
     <table class="tbl">

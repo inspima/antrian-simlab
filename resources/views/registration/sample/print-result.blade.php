@@ -133,6 +133,13 @@
             font-size: 1em;
             font-weight: normal
         }
+        .tbl tr td.border-bottom {
+            border-bottom: 1px solid grey;
+            font-size: 1em;
+            font-weight: normal;
+            padding: 6px;
+        }
+
 
         .tbl-total {
             width: 100%;
@@ -164,39 +171,39 @@
 <br/>
 <table class="tbl">
     <tr>
-        <td style="border: 1px solid black;padding: 15px 10px">
+        <td style="padding: 15px 10px">
             <table class="tbl">
                 <tr>
-                    <td style="width: 20%"><b>Nama Pasien</b></td>
-                    <td style="width: 30%"> : {{ $reg_simlab->nama_pasien }}</td>
-                    <td style="width: 20%"><b>Umur</b></td>
-                    <td style="width: 30%"> : {{ is_numeric($reg_simlab->umur) ? "" . $reg_simlab->umur . " th " : $reg_simlab->umur }}</td>
+                    <td class="border-bottom" style="width: 20%;border-"><b>Nama Pasien</b></td>
+                    <td class="border-bottom" style="width: 30%"> : {{ $reg_simlab->nama_pasien }}</td>
+                    <td class="border-bottom" style="width: 20%"><b>Umur</b></td>
+                    <td class="border-bottom" style="width: 30%"> : {{ is_numeric($reg_simlab->umur) ? "" . $reg_simlab->umur . " th " : $reg_simlab->umur }}</td>
                 </tr>
                 <tr>
-                    <td><b>Alamat Pasien</b></td>
-                    <td> : {{ $reg_simlab->alamat_pasien }}</td>
-                    <td><b>Telephone</b></td>
-                    <td> : {{ $reg_simlab->telephone }} / {{ $reg_simlab->hp }}</td>
+                    <td class="border-bottom"><b>Alamat Pasien</b></td>
+                    <td class="border-bottom"> : {{ $reg_simlab->alamat_pasien }}</td>
+                    <td class="border-bottom"><b>Telephone</b></td>
+                    <td class="border-bottom"> : {{ $reg_simlab->telephone }} / {{ $reg_simlab->hp }}</td>
                 </tr>
                 <tr>
-                    <td><b>Dokter Pengirim</b></td>
-                    <td> : {{ $reg_simlab->gelar_depan }} {{ $reg_simlab->nama_dokter }} {{ $reg_simlab->gelar_belakang }}</td>
-                    <td><b>No.Registrasi</b></td>
-                    <td> : {{ $reg_simlab->no_registrasi }}</td>
+                    <td class="border-bottom"><b>Dokter Pengirim</b></td>
+                    <td class="border-bottom"> : {{ $reg_simlab->gelar_depan }} {{ $reg_simlab->nama_dokter }} {{ $reg_simlab->gelar_belakang }}</td>
+                    <td class="border-bottom"><b>No.Registrasi</b></td>
+                    <td class="border-bottom"> : {{ $reg_simlab->no_registrasi }}</td>
 
                 </tr>
                 <tr>
-                    <td><b>Instansi Pengirim</b></td>
-                    <td> : {{ $reg_simlab->nama_instansi }}</td>
+                    <td class="border-bottom"><b>Instansi Pengirim</b></td>
+                    <td class="border-bottom"> : {{ $reg_simlab->nama_instansi }}</td>
 
-                    <td><b>Waktu Registrasi</b></td>
-                    <td> : {{ $reg_simlab->waktu_registrasi }}</td>
+                    <td class="border-bottom"><b>Waktu Registrasi</b></td>
+                    <td class="border-bottom"> : {{ $reg_simlab->waktu_registrasi }}</td>
                 </tr>
             </table>
         </td>
     </tr>
 </table>
-<br/>
+<hr/>
 <br/>
 <table class="tbl">
     <thead>
