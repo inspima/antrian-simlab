@@ -102,8 +102,8 @@
                     'name' => $user->name,
                     'address' => $organization->address,
                 ]);
-                DB::commit();
                 Mail::to($data['email'])->send(new NewUserRegistration($data));
+                DB::commit();
                 return [
                     'status' => 1,
                     'message' => 'Registrasi Sukses. Silahkan cek email.',
