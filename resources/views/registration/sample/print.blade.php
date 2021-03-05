@@ -174,10 +174,12 @@
                     Silahkan datang untuk pengambilan Sample Swab pada waktu yang ditentukan<br/>
                     Hari, Tanggal <br/>
                     <b style="font-size: 1.4em;font-weight: bold">{{Carbon\Carbon::parse($reg->queue_date)->translatedFormat('l, d F Y')}}</b> <br/>
-                    Waktu  <br/>
+                    Waktu <br/>
                     <b>09.00-10.00 WIB</b><br/>
-                    <br/>
-                    Harus membawa bukti semua all record, jika tidak membawa maka tidak akan di proses
+                    @if(!in_array($org->type,['Perusahaan','Individu']))
+                        <br/>
+                        Harus membawa bukti semua all record, jika tidak membawa maka tidak akan di proses
+                    @endif
                     <br/>
                     <br/>
                     <br/>
@@ -221,8 +223,8 @@
     </table>
     @if($index+1<count($patiens))
         <div class="page-break"></div>
-    @endif
-    @endforeach
+        @endif
+        @endforeach
 
-    </body>
+        </body>
 </html>

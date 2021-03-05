@@ -275,7 +275,7 @@
                     </p>
                     <table>
                         <tr>
-                            <td>Dicetak Oleh : <b>{{session('user_name')}}</b></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>
@@ -297,7 +297,7 @@
                     <b>Manajer Teknis </b>
                     <br/>
                     <br/>
-                    <img width=120" src="assets/images/nrt-ttd.png"/>
+                    <img width=250" src="assets/images/nrt-ttd.png"/>
                     <br/>
                     ({{ $user_pj->gelar_depan . ' ' . $user_pj->nama_pegawai . ' ' . $user_pj->gelar_belakang }})
                 </div>

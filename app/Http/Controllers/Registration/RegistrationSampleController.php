@@ -149,7 +149,7 @@
         public function print(Request $request, $key)
         {
             $id = base64_decode($key);
-            $reg = Registration::whereRaw('md5(id)=?',[$id])->first();
+            $reg = Registration::whereRaw('md5(id)=?', [$id])->first();
             $patiens = RegistrationPatient::where('registration_id', $reg->id)->get();
             $quota_organisation = QuotaOrganization::where('organization_id', session("org_id"))->first();
             if (empty($quota_organisation)) {
@@ -157,6 +157,7 @@
             }
             $params = [
                 "reg" => $reg,
+                "org" => $reg->organization,
                 "patiens" => $patiens,
                 "quota" => $quota_organisation->quota,
                 "route" => $this->route
@@ -172,7 +173,7 @@
         public function printResult(Request $request, $key)
         {
             $id = base64_decode($key);
-            $reg_patien = RegistrationPatient::whereRaw('md5(id)=?',[$id])->first();
+            $reg_patien = RegistrationPatient::whereRaw('md5(id)=?', [$id])->first();
             $reg = Registration::find($reg_patien->registration_id);
             $reg_simlab = $this->getRegistrasiSimlab($reg_patien->simlab_reg_code);
             $reg_patiens_simlabs = $this->getPasienPemeriksaanSimlab($reg_patien->simlab_reg_code);
@@ -326,21 +327,21 @@
                 $this->searchQueue(date('Y-m-d'), $id);
                 $reg = Registration::find($id);
                 $org = Organization::find($reg->organization_id);
-                $reg_patients = RegistrationPatient::where('registration_id',$reg->id)->get();
+                $reg_patients = RegistrationPatient::where('registration_id', $reg->id)->get();
                 // Send Notification
                 $notification_helper = new NotificationHelper();
-                $list_patient_str ='';
-                foreach($reg_patients as $index=>$patient){
-                    $list_patient_str.=($index + 1).'. '.$patient->name.'[lb]';
+                $list_patient_str = '';
+                foreach ($reg_patients as $index => $patient) {
+                    $list_patient_str .= ($index + 1) . '. ' . $patient->name . '[lb]';
                 }
                 $data = [
                     'message' => "Pendaftaran anda diterima, silahkan datang pada [lb]" .
-                        'Hari / Tanggal : '.Carbon::parse($reg->queue_date)->translatedFormat('l, d F Y').'[lb] '.
-                        'Waktu : 09.00 -10.00 WIB [lb][lb]'.
+                        'Hari / Tanggal : ' . Carbon::parse($reg->queue_date)->translatedFormat('l, d F Y') . '[lb] ' .
+                        'Waktu : 09.00 -10.00 WIB [lb][lb]' .
                         'Daftar nama pasien pengirim sample [lb]' .
-                        $list_patient_str.'[lb]'.
+                        $list_patient_str . '[lb]' .
                         'Harap Print kemudian bawa bukti pendaftaran, dari link dibawah ini [lb][lb]' .
-                        route('registration.sample.print',base64_encode(md5($reg->id))) . '[lb]',
+                        route('registration.sample.print', base64_encode(md5($reg->id))) . '[lb]',
                     'to_number' => $org->whatsapp,
                 ];
                 $notification_helper->send($data);
