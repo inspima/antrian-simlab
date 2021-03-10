@@ -35,7 +35,7 @@
                 <div class="card-body">
                     <h4 class="mt-0 header-title">Form Registrasi</h4>
                     <p class="text-muted m-b-30 font-14">Silahkan isi data dengan benar dan lengkap.</p>
-                    <form id="form" method="POST" action="{{ ($data->id)?route($route."update", $data->id):route($route."store")}}">
+                    <form id="form" method="POST" autocomplete="off" action="{{ ($data->id)?route($route."update", $data->id):route($route."store")}}">
                         @if($data->id)
                             {{ method_field('PUT') }}
                         @endif
@@ -66,7 +66,7 @@
                         <hr>
                         <h4 class="mt-0 header-title">Data Pasien</h4>
                         <p class="text-primary m-b-30 font-14">Jumlah maksimal pasien yang bisa anda kirim adalah <b>{{$quota}}</b>.</p>
-                    
+
                         <div id="patient-template" class="row form-group hide">
                             <div class="col-sm-1">
                                 <button type="button" class="btn btn-sm btn-danger waves-effect" onclick="removePatient(this)"><i class="ion-close-circled"></i> Hapus</button>
@@ -89,7 +89,7 @@
                             </div>
                             <div class="col-sm-2">
                                 <input type="text" id="no_hp" name="no_hp[]" class="form-control" placeholder="No HP">
-                            </div>                            
+                            </div>
                             <div class="col-sm-1">
                                 <input type="text" id="test_loop" name="test_loop[]" class="form-control" placeholder="Tes Ke">
                             </div>
@@ -120,7 +120,7 @@
                                         </div>
                                         <div class="col-sm-2">
                                             <input type="text" name="no_hp[]" class="form-control" placeholder="No HP" value="{{$p->mobile}}">
-                                        </div>                                                                 
+                                        </div>
                                         <div class="col-sm-1">
                                             <input type="text" name="test_loop[]" class="form-control" value="{{$p->test_loop}}" placeholder="Tes Ke">
                                         </div>
@@ -148,7 +148,7 @@
                                         </div>
                                         <div class="col-sm-2">
                                             <input type="text" name="no_hp[]" class="form-control" placeholder="No HP" value="{{$p->mobile}}">
-                                        </div>                                                               
+                                        </div>
                                         <div class="col-sm-1">
                                             <input type="text" id="test_loop" name="test_loop[]" class="form-control" value="{{$p->test_loop}}" placeholder="Tes Ke">
                                         </div>
@@ -178,12 +178,12 @@
                                     </div>
                                     <div class="col-sm-2">
                                         <input type="text" name="no_hp[]" class="form-control" placeholder="No HP">
-                                    </div>                       
+                                    </div>
                                     <div class="col-sm-1">
                                         <input type="text" name="test_loop[]" class="form-control" placeholder="Tes Ke">
                                     </div>
                                 </div>
-                            @endif                            
+                            @endif
                         </div>
                         <div class="form-group m-t-10 mb-0 row">
                             <div class="col-sm-6">
@@ -197,7 +197,7 @@
                         <div class="row form-group">
                             <input type="hidden" id="max_data" name="max_data" value="{{$quota}}">
                             <input type="hidden" id="jumlah_data" name="jumlah_data" value="@if($data->id){{count($data->registration_patiens)}}@else{{'1'}}@endif">
-                            <input type="hidden" name="id" value="{{$data->id}}">  
+                            <input type="hidden" name="id" value="{{$data->id}}">
                             <div class="col-sm-12">
                                 <button type="button" class="btn btn-blue-grey waves-effect waves-light" onclick="window.location.href ='{{route($route.'index')}}'"><i class="ion-arrow-left-b"></i> Kembali </button>
                                 <button id="btn-submit" type="submit" class="btn btn-success waves-effect waves-light pull-right"><i class="ion-checkmark-round"></i> Simpan</button>
@@ -247,14 +247,14 @@
         console.log(jumlah_data);
     }
     function addPatient(){
-        if(($('.patient-form').length+1)<=$('#max_data').val()){            
+        if(($('.patient-form').length+1)<=$('#max_data').val()){
             var patienFormHtml=$("#patient-template").clone();
             patienFormHtml.find('#name').removeAttr('id');
             patienFormHtml.find('#nik').removeAttr('id');
             patienFormHtml.find('#born_date').removeAttr('id');
             patienFormHtml.find('#address').removeAttr('id');
-            $('#patient-section').append(patienFormHtml.removeClass('hide').addClass('patient-form'));  
-            var jumlah_data=$('.patient-form').length;                  
+            $('#patient-section').append(patienFormHtml.removeClass('hide').addClass('patient-form'));
+            var jumlah_data=$('.patient-form').length;
             $('#jumlah_data').val(jumlah_data);
             console.log(jumlah_data);
             initComponent();

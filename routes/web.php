@@ -17,7 +17,7 @@
 
     // Default Route
     Route::get('/', 'DashboardController@index');
-
+    Route::any('/forget-password', 'AccountController@forgetPassword')->name('forget-password');
     // Dashboard
     Route::group(['prefix' => 'dashboard'], function () {
         Route::get('/datatable/monitoring-quota', 'DashboardController@datatableMonitoringQuota')->name('dashboard.datatable-monitoring-quota');

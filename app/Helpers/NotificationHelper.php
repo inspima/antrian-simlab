@@ -9,7 +9,7 @@
         private $WA_FORMAT_BOLD = '*';
         private $WA_FORMAT_ITALIC = '_';
 
-        private function generateMultipleLineWhatsapp($count)
+        public function generateMultipleLineWhatsapp($count)
         {
             $result = '';
             for ($i = 1; $i <= $count; $i++) {
@@ -18,7 +18,7 @@
             return $result;
         }
 
-        private function formatingMessageWhatsapp($message)
+        public function formatingMessageWhatsapp($message)
         {
             $message = str_replace('[lb]', $this->WA_FORMAT_LINE_BREAK, $message);
             $header = $this->formattingBoldWhatsapp(getenv('APP_NAME'));
@@ -30,17 +30,17 @@
                 $footer;
         }
 
-        private function formattingBoldWhatsapp($string)
+        public function formattingBoldWhatsapp($string)
         {
             return $this->WA_FORMAT_BOLD . $string . $this->WA_FORMAT_BOLD;
         }
 
-        private function formattingItalicWhatsapp($string)
+        public function formattingItalicWhatsapp($string)
         {
             return $this->WA_FORMAT_ITALIC . $string . $this->WA_FORMAT_ITALIC;
         }
 
-        private function sendWhatsapp($message, $to_number)
+        public function sendWhatsapp($message, $to_number)
         {
             try {
                 // Pastikan phone menggunakan kode negara atau

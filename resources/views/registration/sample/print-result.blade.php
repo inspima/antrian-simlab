@@ -228,7 +228,7 @@
                 }
             @endphp
             </td>
-            <td style="text-align: center;border: 1px solid grey;font-weight: normal">{{ $d->hasil_pengujian }}</td>
+            <td style="text-align: center;border: 1px solid grey;font-weight: normal">{!! $d->hasil_pengujian !!}</td>
             <td style="text-align: center;border: 1px solid grey;font-weight: normal">{{ $d->nilai_normal }}</td>
         </tr>
         @if(count($d->data_child)>0)

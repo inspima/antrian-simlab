@@ -37,16 +37,9 @@
 
 
                      <div class="form-group m-t-10 mb-0 row">
-                        <div class="col-sm-6">
-                            <div class="custom-control custom-checkbox">
-                               <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                <label class="custom-control-label" for="remember">Simpan login</label>
-                            </div>
-                        </div>
-
-                         {{-- <div class="col-sm-6 text-right">
-                            <a href="pages-recoverpw-2" style="color: white"><i class="mdi mdi-lock"></i> Lupa password?</a>
-                         </div> --}}
+                        <div class="col-sm-12">
+                             Lupa password? klik <a href="{{route('forget-password')}}" style="color: orange">disini</a>
+                         </div>
                      </div>
                      <div class="form-group row m-t-20">
                         <div class="col-sm-6 m-t-5">
