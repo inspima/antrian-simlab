@@ -42,6 +42,11 @@
                          </div>
                      </div>
                      <div class="form-group row m-t-20">
+                         <div class="col-sm-12 m-t-5">
+                             <a class="btn btn-block btn-blue-grey w-md waves-effect waves-light" target="_blank" href="{{asset('assets/files/TUTORIAL_REGISTRASI_ITD_2021.pdf')}}">Baca Panduan</a>
+                         </div>
+                     </div>
+                     <div class="form-group row m-t-5">
                         <div class="col-sm-6 m-t-5">
                            <button class="btn btn-block btn-primary w-md waves-effect waves-light" type="submit">Log In</button>
                         </div>
