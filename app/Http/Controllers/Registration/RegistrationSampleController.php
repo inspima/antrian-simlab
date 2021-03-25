@@ -5,8 +5,6 @@
     use App\Helpers\NotificationHelper;
     use App\Helpers\TextformattingHelper;
     use App\Http\Controllers\Controller;
-    use App\Models\HR\Shift;
-    use App\Models\HR\WorkGroup;
     use App\Models\Master\Holiday;
     use App\Models\Master\Organization;
     use App\Models\Process\QuotaOrganization;
@@ -14,6 +12,7 @@
     use App\Models\Process\Registration;
     use App\Models\Process\RegistrationPatient;
     use App\Models\Process\RegistrationQueue;
+    use App\Models\General\LogError;
     use Barryvdh\DomPDF\Facade as PDF;
     use Carbon\Carbon;
     use Illuminate\Http\Request;
@@ -253,7 +252,20 @@
                 return redirect(route($this->route . 'index'))->with('swal-success', 'success');
             } catch (\Exception $e) {
                 DB::rollBack();
-                return Redirect::back()->withErrors([$e->getMessage()]);
+                LogError::create([
+                    'message' => $e->getMessage(),
+                    'line' => $e->getLine(),
+                    'params' => json_encode([$request->all()]),
+                    'stack_trace' => $e->getTraceAsString(),
+                    'file' => $e->getFile(),
+                    'url' => $request->fullurl(),
+                    'ip_source' => $request->ip(),
+                    'client_code' => $data->code,
+                    'user_agent' => $request->header('User-Agent'),
+                    'error_code' => $e->getCode(),
+                    'http_code' => '500',
+                ]);
+                return Redirect::back()->withErrors(['Gagal menyimpan, silahkan periksa data anda']);
             }
         }
 
@@ -298,7 +310,20 @@
                 return redirect(route($this->route . 'index'))->with('swal-success', 'success');
             } catch (\Exception $e) {
                 DB::rollBack();
-                return Redirect::back()->withErrors([$e->getMessage()]);
+                LogError::create([
+                    'message' => $e->getMessage(),
+                    'line' => $e->getLine(),
+                    'params' => json_encode([$request->all()]),
+                    'stack_trace' => $e->getTraceAsString(),
+                    'file' => $e->getFile(),
+                    'url' => $request->fullurl(),
+                    'ip_source' => $request->ip(),
+                    'client_code' => $data->code,
+                    'user_agent' => $request->header('User-Agent'),
+                    'error_code' => $e->getCode(),
+                    'http_code' => '500',
+                ]);
+                return Redirect::back()->withErrors(['Gagal menyimpan, silahkan periksa data anda']);
             }
         }
 

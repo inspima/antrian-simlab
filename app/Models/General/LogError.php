@@ -13,4 +13,6 @@ class LogError extends Model
     protected $table = 'log_errors';
 
     public $dates = ['created_at', 'updated_at', 'deleted_at'];
+
+    protected $guarded = [];
 }

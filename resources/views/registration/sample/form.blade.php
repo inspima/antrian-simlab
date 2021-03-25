@@ -91,7 +91,7 @@
                                 <input type="text" id="no_hp" name="no_hp[]" class="form-control" placeholder="No HP">
                             </div>
                             <div class="col-sm-1">
-                                <input type="text" id="test_loop" name="test_loop[]" class="form-control" placeholder="Tes Ke">
+                                <input type="number" id="test_loop" name="test_loop[]" class="form-control" placeholder="Tes Ke" value="1">
                             </div>
                         </div>
                         <div id="patient-section">
@@ -122,7 +122,7 @@
                                             <input type="text" name="no_hp[]" class="form-control" placeholder="No HP" value="{{$p->mobile}}">
                                         </div>
                                         <div class="col-sm-1">
-                                            <input type="text" name="test_loop[]" class="form-control" value="{{$p->test_loop}}" placeholder="Tes Ke">
+                                            <input type="number" name="test_loop[]" class="form-control" value="{{$p->test_loop}}" placeholder="Tes Ke">
                                         </div>
                                     </div>
                                 @else
@@ -150,7 +150,7 @@
                                             <input type="text" name="no_hp[]" class="form-control" placeholder="No HP" value="{{$p->mobile}}">
                                         </div>
                                         <div class="col-sm-1">
-                                            <input type="text" id="test_loop" name="test_loop[]" class="form-control" value="{{$p->test_loop}}" placeholder="Tes Ke">
+                                            <input type="number" id="test_loop" name="test_loop[]" class="form-control" value="{{$p->test_loop}}" placeholder="Tes Ke">
                                         </div>
                                     </div>
                                 @endif
@@ -180,7 +180,7 @@
                                         <input type="text" name="no_hp[]" class="form-control" placeholder="No HP">
                                     </div>
                                     <div class="col-sm-1">
-                                        <input type="text" name="test_loop[]" class="form-control" placeholder="Tes Ke">
+                                        <input type="number" name="test_loop[]" class="form-control" placeholder="Tes Ke" value="1">
                                     </div>
                                 </div>
                             @endif
