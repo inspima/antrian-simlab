@@ -176,7 +176,7 @@
             $reg = Registration::find($reg_patien->registration_id);
             $reg_simlab = $this->getRegistrasiSimlab($reg_patien->simlab_reg_code);
             $reg_patiens_simlabs = $this->getPasienPemeriksaanSimlab($reg_patien->simlab_reg_code);
-            $user_pj = collect(DB::connection('mysql-simlab')->select("select * from pegawai where id_pegawai='55'"))->first();
+            $user_pj = collect(DB::connection('mysql-simlab')->select("select * from pegawai where id_pegawai='73'"))->first();
             $params = [
                 "reg" => $reg,
                 "reg_patient" => $reg_patien,
