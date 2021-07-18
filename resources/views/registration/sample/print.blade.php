@@ -175,7 +175,7 @@
                     Hari, Tanggal <br/>
                     <b style="font-size: 1.4em;font-weight: bold">{{Carbon\Carbon::parse($reg->queue_date)->translatedFormat('l, d F Y')}}</b> <br/>
                     Waktu <br/>
-                    <b>09.00-10.00 WIB</b><br/>
+                    <b>08.00-09.00 WIB</b><br/>
                     @if(!in_array($org->type,['Perusahaan','Individu']))
                         <br/>
                         Harus membawa bukti semua all record, jika tidak membawa maka tidak akan di proses
