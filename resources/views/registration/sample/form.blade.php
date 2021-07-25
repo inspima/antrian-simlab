@@ -72,7 +72,7 @@
                                 <button type="button" class="btn btn-sm btn-danger waves-effect" onclick="removePatient(this)"><i class="ion-close-circled"></i> Hapus</button>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" id="name" name="name[]" required class="form-control" placeholder="Nama Lengkap">
+                                <input type="text" style="text-transform: capitalize" id="name" name="name[]" required class="form-control" placeholder="Nama Lengkap">
                                 <hr/>
                                 <input type="number" id="nik" name="nik[]" required class="form-control" placeholder="NIK (KTP)">
                             </div>
@@ -103,7 +103,7 @@
                                             <button type="button" class="btn btn-sm btn-primary waves-effect" onclick="addPatient()"><i class="ion-plus-circled"></i> Pasien </button>
                                         </div>
                                         <div class="col-sm-3">
-                                            <input type="text" name="name[]" required class="form-control" placeholder="Nama Lengkap" value="{{$p->name}}">
+                                            <input type="text" style="text-transform: capitalize" name="name[]" required class="form-control" placeholder="Nama Lengkap" value="{{$p->name}}">
                                             <hr/>
                                             <input type="number" name="nik[]" required class="form-control" placeholder="NIK (KTP)" value="{{$p->id_number}}">
                                         </div>
@@ -131,7 +131,7 @@
                                             <button type="button" class="btn btn-sm btn-danger waves-effect" onclick="removePatient(this)"><i class="ion-close-circled"></i> Hapus</button>
                                         </div>
                                         <div class="col-sm-3">
-                                            <input type="text" name="name[]" required class="form-control" placeholder="Nama Lengkap" value="{{$p->name}}">
+                                            <input type="text" style="text-transform: capitalize" name="name[]" required class="form-control" placeholder="Nama Lengkap" value="{{$p->name}}">
                                             <hr/>
                                             <input type="number" name="nik[]" required class="form-control" placeholder="NIK (KTP)" value="{{$p->id_number}}">
                                         </div>
@@ -161,7 +161,7 @@
                                         <button type="button" class="btn btn-sm btn-primary waves-effect" onclick="addPatient()"><i class="ion-plus-circled"></i> Pasien </button>
                                     </div>
                                     <div class="col-sm-3">
-                                        <input type="text" name="name[]" required class="form-control" placeholder="Nama Lengkap">
+                                        <input type="text" style="text-transform: capitalize" name="name[]" required class="form-control" placeholder="Nama Lengkap">
                                         <hr/>
                                         <input type="number" name="nik[]" required class="form-control" placeholder="NIK (KTP)">
                                     </div>
