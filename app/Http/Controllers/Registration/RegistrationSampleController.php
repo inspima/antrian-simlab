@@ -460,12 +460,12 @@
                 })
                 ->editColumn('action', function ($d) {
                     if ($d->status == '0') {
-                        $html = '<a href="' . route($this->route . 'edit', $d->id) . '" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="bottom" title="Ubah" data-original-title="Edit"><i class="mdi mdi-pencil font-20"></i></a>';
-                        $html .= '<a href="javascript:void(0)" onclick="sendData(' . $d->id . ')" class="m-r-15 text-primary" data-toggle="tooltip" data-placement="bottom" title="Kirim" data-original-title="Kirim"><i class="fa fa-send font-20"></i></a>';
-                        $html .= '<a href="javascript:void(0)" onclick="deleteData(' . $d->id . ')" class="text-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus" data-original-title="Delete"><i class="mdi mdi-close font-20"></i></a>';
+                        $html = '<a href="' . route($this->route . 'edit', $d->id) . '" class="btn btn-sm btn-secondary m-r-10 text-white" data-toggle="tooltip" data-placement="bottom" title="Ubah" data-original-title="Edit"><i class="mdi mdi-pencil font-14"></i> Ubah</a>';
+                        $html .= '<a href="javascript:void(0)" onclick="deleteData(' . $d->id . ')" class="btn btn-sm btn-danger m-r-10 text-white" data-toggle="tooltip" data-placement="bottom" title="Hapus" data-original-title="Delete"><i class="mdi mdi-close font-14"></i> Hapus</a>';
+                        $html .= '<a href="javascript:void(0)" onclick="sendData(' . $d->id . ')" class="btn btn-sm bg-teal text-white" data-toggle="tooltip" data-placement="bottom" title="Kirim" data-original-title="Kirim"><i class="fa fa-send font-14"></i> Kirim</a>';
                     } else if ($d->status == '1') {
-                        $html = '<a target="_blank" href="' . route($this->route . 'print', base64_encode(md5($d->id))) . '" class="m-r-15 text-primary" data-toggle="tooltip" data-placement="bottom" title="Print" data-original-title="Edit"><i class="ion-printer font-20"></i></a>';
-                        $html .= '<a href="' . route($this->route . 'detail', $d->id) . '" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="bottom" title="Detail" data-original-title="Edit"><i class="ion-android-information font-20"></i></a>';
+                        $html = '<a target="_blank" href="' . route($this->route . 'print', base64_encode(md5($d->id))) . '" class="btn btn-sm btn-info text-white m-r-10" data-toggle="tooltip" data-placement="bottom" title="Print" data-original-title="Edit"><i class="ion-printer font-14"></i> Print</a>';
+                        $html .= '<a href="' . route($this->route . 'detail', $d->id) . '" class="btn btn-sm btn-secondary text-white" data-toggle="tooltip" data-placement="bottom" title="Detail" data-original-title="Edit"><i class="ion-android-information font-14"></i> Detail</a>';
                     }
                     return $html;
                 })
