@@ -219,14 +219,7 @@
     <tbody id="pemeriksaan-pembayaran-data-table ">
     @foreach($reg_patient_simlabs as $no=>$d)
         <tr>
-            <td style="text-align: center;padding-left:5%;border: 1px solid grey;font-weight: normal">{{ $d->nama_pengujian }}</td>
-            @php
-                foreach ($d->data_sample as $ds) {
-                    if ($ds->id_pemeriksaan_sample != '') {
-                        echo '- ' . $ds->nama_sample . '<br/>';
-                    }
-                }
-            @endphp
+            <td style="text-align: center;padding-left:5%;border: 1px solid grey;font-weight: normal">{{ $d->nama_pengujian }}
             </td>
             <td style="text-align: center;border: 1px solid grey;font-weight: normal">{!! $d->hasil_pengujian !!}</td>
             <td style="text-align: center;border: 1px solid grey;font-weight: normal">{{ $d->nilai_normal }}</td>
