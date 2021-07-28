@@ -53,6 +53,12 @@
                     $organization->email = $request['organization_email'];
                     $organization->whatsapp = $request['mobile'];
                     $organization->save();
+                }else{
+                    $organization->name = $request['name'];
+                    $organization->address = $request['address'];
+                    $organization->email = $request['email'];
+                    $organization->whatsapp = $request['mobile'];
+                    $organization->save();
                 }
                 $user->name = $request['name'];
                 $user->email = $request['email'];
