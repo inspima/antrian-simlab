@@ -14,9 +14,11 @@
 
     // Auth
     Auth::routes();
+    Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'authenticate']);
 
     // Default Route
     Route::get('/', 'DashboardController@index');
+    Route::get('/validation-result/{key}', 'FrontendController@validationResult')->name('validation-result');
     Route::any('/forget-password', 'AccountController@forgetPassword')->name('forget-password');
     // Dashboard
     Route::group(['prefix' => 'dashboard'], function () {

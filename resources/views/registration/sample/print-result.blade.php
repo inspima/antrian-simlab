@@ -253,7 +253,6 @@
     <tr>
         <td style="border: none"></td>
         <td style="border: none">
-
         </td>
     </tr>
     <tr>
@@ -267,9 +266,7 @@
 
                         <br/>
                         <br/>
-                        <br/>
-                        <br/>
-                        <br/>
+                        {!! \Milon\Barcode\DNS2D::getBarcodeHTML(route('validation-result', base64_encode(md5($reg_patient->id))), 'QRCODE',3,3) !!}
                         <br/>
                         <br/>
                     </p>

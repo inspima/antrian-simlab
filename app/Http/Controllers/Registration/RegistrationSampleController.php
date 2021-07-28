@@ -19,6 +19,7 @@
     use Illuminate\Support\Facades\Crypt;
     use Illuminate\Support\Facades\DB;
     use Illuminate\Support\Facades\Redirect;
+    use SimpleSoftwareIO\QrCode\Facade as QrCode;
     use Yajra\DataTables\Facades\DataTables;
 
     class RegistrationSampleController extends Controller
@@ -183,7 +184,7 @@
                 "reg_simlab" => $reg_simlab,
                 "reg_patient_simlabs" => $reg_patiens_simlabs,
                 'user_pj' => $user_pj,
-                "route" => $this->route
+                "route" => $this->route,
             ];
             PDF::setOptions(['defaultFont' => 'Trebuchet MS']);
             $pdf = PDF::loadView($this->route . 'print-result', $params);
