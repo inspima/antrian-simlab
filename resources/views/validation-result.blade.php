@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>VALIDASI HASIL PEMERIKSAAN {{$reg->code}}</title>
+    <title>VALIDASI HASIL PEMERIKSAAN {{$reg_simlab->no_registrasi}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 
     <link href="{{ URL::asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
