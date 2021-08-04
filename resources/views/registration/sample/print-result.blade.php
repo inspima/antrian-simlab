@@ -259,7 +259,7 @@
 
                         <br/>
                         <br/>
-                        {!! \Milon\Barcode\DNS2D::getBarcodeHTML(route('validation-result', base64_encode(md5($reg_patient->id))), 'QRCODE',3,3) !!}
+                        {!! \Milon\Barcode\DNS2D::getBarcodeHTML(route('validation-result', base64_encode(md5($reg_simlab->id_registrasi_pemeriksaan))), 'QRCODE',3,3) !!}
                         <br/>
                         <br/>
                     </p>
